@@ -1,8 +1,9 @@
 'use client'
 
-import {QueryClient, useQuery} from "@tanstack/react-query";
+import {useQuery} from "@tanstack/react-query";
 import {useState} from "react";
 import {BookDocument, OpenLibrarySearchResponse} from "@/app/interfaces/open-library";
+import BookSearchResult from "@/components/BookSearchResult";
 
 export default function SearchBooks() {
   const [query, setQuery] = useState('lord of the rings')
@@ -48,17 +49,7 @@ export default function SearchBooks() {
       <div className="mt-8">
         {isLoading ? 'Loading...' : (
           <div className="grid divide-y">
-            {data?.docs?.map((r: BookDocument) => (<div className="py-5 flex justify-between gap-3" key={r.title}>
-              <div>
-                <h2 className="font-medium text-lg leading-none mb-2">{r.title}</h2>
-                <p className="leading-none text-gray-600">{r.author_name[0]}</p>
-              </div>
-              <div>
-                <button type="button" className="rounded-md border px-3 py-2 font-medium whitespace-nowrap hover:bg-black hover:text-white hover:border-black transition-colors">
-                  Add to shelf
-                </button>
-              </div>
-            </div>))}
+            {data?.docs?.map((r: BookDocument) => (<BookSearchResult key={r.key} book={r}/>))}
           </div>
         )}
       </div>
