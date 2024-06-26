@@ -16,21 +16,10 @@ export default async function ProtectedPage() {
   }
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-20 items-center">
-      <div className="w-full">
-        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-          <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
-            <DeployButton />
-            <AuthButton />
-          </div>
-        </nav>
-      </div>
+    <>
+      <h1 className="text-3xl font-semibold">My book shelf</h1>
 
-      <main className="max-w-4xl w-full">
-        <h1 className="text-3xl font-semibold">My book shelf</h1>
-
-        <BookList></BookList>
-      </main>
-    </div>
+      <BookList></BookList>
+    </>
   );
 }
