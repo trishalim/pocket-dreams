@@ -2,6 +2,7 @@ import DeployButton from "@/components/DeployButton";
 import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import BookList from "@/components/BookList";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -13,13 +14,6 @@ export default async function ProtectedPage() {
   if (!user) {
     return redirect("/login");
   }
-
-
-  const { data: books } = await supabase.from('book_shelf').select().eq('user_id', user.id)
-
-  console.log(books)
-
-  return <pre>{JSON.stringify(books, null, 2)}</pre>
 
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
@@ -34,6 +28,8 @@ export default async function ProtectedPage() {
 
       <main className="max-w-4xl w-full">
         <h1 className="text-3xl font-semibold">My book shelf</h1>
+
+        <BookList></BookList>
       </main>
     </div>
   );
