@@ -2,6 +2,9 @@
 
 import {BookDocument} from "@/app/interfaces/open-library";
 import {createClient} from "@/utils/supabase/client";
+import {addBook} from "@/app/actions/books";
+import {getUser} from "@/app/actions/user";
+import {addBookToShelf} from "@/app/actions/userBooks";
 
 export default function BookSearchResult({book}: { book: BookDocument }) {
   const supabase = createClient()
@@ -19,28 +22,12 @@ export default function BookSearchResult({book}: { book: BookDocument }) {
       open_library_cover_edition_key: cover_edition_key,
     }
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    console.log(user)
+    const user = await getUser()
 
     if (user) {
-      const result = await supabase.from('books').upsert(payload)
-      console.log('inserted book with id ', result)
-
-      const response = await supabase.from('books').select('id').eq('open_library_key', key)
-      console.log(response)
-
-      if (response.data) {
-        supabase.from('user_books').insert({
-          user_id: user.id,
-          book_id: response.data[0].id,
-        }).then(() => {
-          console.log('added to shelf')
-        })
-      }
+      await addBook(book)
+      await addBookToShelf(book.key)
     }
-
   }
 
   return (
