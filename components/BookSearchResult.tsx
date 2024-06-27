@@ -6,7 +6,7 @@ import {createClient} from "@/utils/supabase/client";
 export default function BookSearchResult({book}: { book: BookDocument }) {
   const supabase = createClient()
 
-  const addToShelf = () => {
+  const addToShelf = async () => {
     const {title, title_sort, first_publish_year, number_of_pages_median, key, cover_edition_key} = book
 
     const payload = {
@@ -19,9 +19,28 @@ export default function BookSearchResult({book}: { book: BookDocument }) {
       open_library_cover_edition_key: cover_edition_key,
     }
 
-    supabase.from('books').upsert(payload).select('id').then(result => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    console.log(user)
+
+    if (user) {
+      const result = await supabase.from('books').upsert(payload)
       console.log('inserted book with id ', result)
-    })
+
+      const response = await supabase.from('books').select('id').eq('open_library_key', key)
+      console.log(response)
+
+      if (response.data) {
+        supabase.from('user_books').insert({
+          user_id: user.id,
+          book_id: response.data[0].id,
+        }).then(() => {
+          console.log('added to shelf')
+        })
+      }
+    }
+
   }
 
   return (
