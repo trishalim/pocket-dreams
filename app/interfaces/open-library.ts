@@ -9,31 +9,14 @@ export interface BookDocument {
   has_fulltext: boolean;
   edition_count: number;
   title: string;
+  title_sort: string;
   author_name: string[];
   first_publish_year: number;
+  number_of_pages_median: number;
+  cover_edition_key: string;
   key: string;
   ia?: string[];
   author_key: string[];
   public_scan_b: boolean;
 }
 
-// Example usage:
-const response: OpenLibrarySearchResponse = {
-  start: 0,
-  num_found: 629,
-  docs: [
-    {
-      cover_i: 258027,
-      has_fulltext: true,
-      edition_count: 120,
-      title: "The Lord of the Rings",
-      author_name: ["J. R. R. Tolkien"],
-      first_publish_year: 1954,
-      key: "OL27448W",
-      ia: ["returnofking00tolk_1", "lordofrings00tolk_1", "lordofrings00tolk_0"],
-      author_key: ["OL26320A"],
-      public_scan_b: true
-    },
-    // ... other books
-  ]
-};

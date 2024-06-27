@@ -12,7 +12,7 @@ export default function SearchBooks() {
   const { isLoading, isError, data, error }  =
     useQuery<OpenLibrarySearchResponse>(
     {
-      queryKey: ['books'],
+      queryKey: ['books', searchQuery],
       queryFn: ()=> {
         console.log({ searchQuery })
         return fetch(`https://openlibrary.org/search.json?q=${searchQuery}&limit=5`).then((r: Response) => r.json())
