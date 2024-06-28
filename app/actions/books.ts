@@ -1,12 +1,10 @@
-
 "use server"
+
 import {BookDocument} from "@/app/interfaces/open-library";
 import {createClient} from "@/utils/supabase/server";
 
-
 const supabase = createClient();
 export const addBook = async (book: BookDocument) => {
-
   const {title, title_sort, first_publish_year, number_of_pages_median, key, cover_edition_key} = book
 
   const payload = {
