@@ -10,22 +10,33 @@ export default async function ProtectedPage() {
     return redirect("/login");
   }
 
-  const userBooks = await prisma.user_books.findMany({
+  // const userBooks = await prisma.user_books.findMany({
+  //   where: {
+  //     user_id: user.id,
+  //   }
+  // })
+  const userWithBooks = await prisma.users.findUniqueOrThrow({
     where: {
-      user_id: user.id,
-    }
+      id: user.id,
+    },
+    include: {
+      user_books: {
+        include: {
+          book: true
+        }
+      }
+    },
   })
 
-
-  console.log({ userBooks})
+  console.log({ user: userWithBooks })
 
   return (
     <>
       <h1 className="text-3xl font-semibold">My book shelf</h1>
 
       <div>
-        {userBooks?.map(book => (
-          <div key={book.book_id}>{book.user_id}</div>
+        {userWithBooks.user_books.map(userBook => (
+          <div key={userBook.book_id}>{userBook.book.title}</div>
         ))}
       </div>
     </>
