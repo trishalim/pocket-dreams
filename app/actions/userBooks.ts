@@ -1,10 +1,9 @@
 "use server"
 
 import {getUser} from "@/app/actions/user";
-import {createClient} from "@/utils/supabase/server";
 import {prisma} from "@/utils/prisma";
+
 export const addBookToShelf = async (key: string) => {
-  console.log('hi')
   const user = await getUser()
 
     if (!user) {
@@ -32,4 +31,18 @@ export const addBookToShelf = async (key: string) => {
     });
 
     console.log('Added to shelf', book.id);
+}
+export const removeBookFromShelf = async (id: bigint) => {
+  const user = await getUser()
+
+  if (user) {
+    await prisma.user_books.delete({
+      where: {
+        user_id_book_id: {
+          book_id: id,
+          user_id: user.id,
+        }
+      },
+    })
+  }
 }
