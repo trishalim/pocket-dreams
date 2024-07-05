@@ -21,20 +21,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={GeistSans.className}>
-      <body className="flex-1 w-full flex flex-col gap-20 items-center">
-        <div className="flex-1 flex flex-col gap-20 max-w-4xl w-full px-3">
+      <body className="flex-1 w-full flex flex-col items-center">
+        <div className="flex-1 flex flex-col w-full">
           <header>
             <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-              <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
-                <div className="flex gap-3">
-                  <Link className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3" href="/">Home</Link>
-                  <Link className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3" href="/shelf">My book shelf</Link>
-                </div>
+              <div className="w-full max-w-4xl flex justify-end items-center p-4 text-sm">
+                {/*<div className="flex gap-3">*/}
+                {/*  <Link className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3" href="/">Home</Link>*/}
+                {/*  <Link className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3" href="/shelf">My book shelf</Link>*/}
+                {/*</div>*/}
                 <AuthButton />
               </div>
             </nav>
           </header>
-          <main className="min-h-screen w-full px-3">
+          <main className="max-w-4xl mx-auto min-h-screen w-full px-4">
             <Providers>
               {children}
             </Providers>

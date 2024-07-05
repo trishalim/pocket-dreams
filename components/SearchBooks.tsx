@@ -26,9 +26,8 @@ export default function SearchBooks() {
   }
 
   return (
-    <main className="max-w-4xl min-h-screen mx-auto px-4">
-      <h1 className="text-center text-5xl font-bold mb-8">What have you read lately?</h1>
-      <form onSubmit={submit} className="flex gap-5 mb-8">
+    <>
+      <form onSubmit={submit} className="flex gap-5">
         <label htmlFor="query" className="sr-only">
           Search
         </label>
@@ -43,16 +42,19 @@ export default function SearchBooks() {
           placeholder="Search books..."
         />
 
-        <button type="submit" className="text-xl rounded-md bg-black text-white px-4 font-medium">Search</button>
+        <button type="submit" className="text-lg rounded-md bg-black text-white px-4 font-medium">Search</button>
       </form>
 
-      <div className="mt-8">
+      <div className="mt-5">
+        <p className="text-gray-500 text-sm">
+          Search results for <span className="italic">{query}</span>
+        </p>
         {isLoading ? 'Loading...' : (
-          <div className="grid divide-y">
+          <div className="grid border-y border-gray-100 mt-3 divide-y divide-gray-100">
             {data?.docs?.map((r: BookDocument) => (<BookSearchResult key={r.key} book={r}/>))}
           </div>
         )}
       </div>
-    </main>
+    </>
   );
 }
