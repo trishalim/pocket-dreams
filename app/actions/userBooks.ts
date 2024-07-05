@@ -66,10 +66,6 @@ export const getUserBooks = async () => {
       },
     });
 
-    console.log({user})
-
-    console.log({userWithBooks})
-
     return userWithBooks.user_books;
   }
 }
