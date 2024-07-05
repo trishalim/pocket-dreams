@@ -16,10 +16,13 @@ export default function BookShelf() {
   const { isLoading, data, error} = useQuery({
     queryKey: ['user_with_books', user?.id],
     queryFn: () => {
-      console.log('queryfn')
       return getUserBooks()
     },
   })
+
+  if (isLoading) {
+    return <div>Loading books...</div>
+  }
 
   return (
     <div className="grid lg:grid-cols-3 gap-5">

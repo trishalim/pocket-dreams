@@ -1,34 +1,43 @@
 'use client'
 
 import {BookDocument} from "@/app/interfaces/open-library";
-import {createClient} from "@/utils/supabase/client";
 import {addBook} from "@/app/actions/books";
 import {getUser} from "@/app/actions/user";
 import {addBookToShelf} from "@/app/actions/userBooks";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 
 export default function BookSearchResult({book}: { book: BookDocument }) {
-  const supabase = createClient()
+  const queryClient = useQueryClient()
 
-  const addToShelf = async () => {
-    const {title, title_sort, first_publish_year, number_of_pages_median, key, cover_edition_key} = book
+  const { data: user} = useQuery({
+    queryKey: ['user'],
+    queryFn: () => {
+      return getUser()
+    },
+  })
 
-    const payload = {
-      title,
-      title_sort,
-      first_publish_year,
-      author_name: book.author_name[0],
-      number_of_pages_median,
-      open_library_key: key,
-      open_library_cover_edition_key: cover_edition_key,
-    }
+  const { isPending, mutate: add} = useMutation({
+    mutationFn: async () => {
+      const {title, title_sort, first_publish_year, number_of_pages_median, key, cover_edition_key} = book
 
-    const user = await getUser()
+      const payload = {
+        title,
+        title_sort,
+        first_publish_year,
+        author_name: book.author_name[0],
+        number_of_pages_median,
+        open_library_key: key,
+        open_library_cover_edition_key: cover_edition_key,
+      }
 
-    if (user) {
-      await addBook(book)
-      await addBookToShelf(book.key)
-    }
-  }
+      if (user) {
+        await addBook(book)
+        await addBookToShelf(book.key)
+      }
+    },
+    mutationKey: ['user_with_books', user?.id],
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['user_with_books', user?.id] }),
+  })
 
   return (
     <div className="py-5 flex justify-between gap-3" key={book.title}>
@@ -38,7 +47,7 @@ export default function BookSearchResult({book}: { book: BookDocument }) {
       </div>
       <div>
         <button
-          onClick={addToShelf}
+          onClick={() => add()}
           type="button"
           className="rounded-md border px-3 py-2 font-medium whitespace-nowrap hover:bg-black hover:text-white hover:border-black transition-colors"
         >

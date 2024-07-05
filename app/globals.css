@@ -20,6 +20,12 @@
   }
 }
 
+@layer components {
+  button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+}
+
 @layer base {
   * {
     @apply border-foreground/20;

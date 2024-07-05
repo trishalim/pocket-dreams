@@ -15,7 +15,7 @@ export default function UserBook({book}: { book: books }) {
     },
   })
 
-  const { mutate: remove } = useMutation({
+  const { mutate: remove, isPending: isRemoving } = useMutation({
     mutationFn: () => {
       return removeBookFromShelf(book.id)
     },
@@ -37,8 +37,9 @@ export default function UserBook({book}: { book: books }) {
       <button
         onClick={() => remove()}
         type="button"
-        className="py-2 px-3 rounded-md bg-black text-white">
-        Remove
+        className="py-2 px-3 rounded-md bg-black text-white"
+        disabled={isRemoving}>
+        {isRemoving ? 'Removing...' : 'Remove'}
       </button>
     </div>
   )
