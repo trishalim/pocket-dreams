@@ -8,6 +8,8 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 export default function UserBook({book}: { book: books }) {
   const queryClient = useQueryClient()
 
+  console.log({book})
+
   const { data: user} = useQuery({
     queryKey: ['user'],
     queryFn: () => {
