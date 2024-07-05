@@ -46,3 +46,30 @@ export const removeBookFromShelf = async (id: bigint) => {
     })
   }
 }
+
+export const getUserBooks = async () => {
+  const user = await getUser()
+
+  console.log({user})
+
+  if (user) {
+    const userWithBooks = await prisma.users.findUniqueOrThrow({
+      where: {
+        id: user.id,
+      },
+      include: {
+        user_books: {
+          include: {
+            book: true
+          }
+        }
+      },
+    });
+
+    console.log({user})
+
+    console.log({userWithBooks})
+
+    return userWithBooks.user_books;
+  }
+}
