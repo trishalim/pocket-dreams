@@ -26,7 +26,7 @@ export default function UserBook({book}: { book: books }) {
   })
 
   return (
-    <div className="border rounded-lg p-3 grid gap-3">
+    <div className="grid gap-3">
       <div>
         <h2 className="text-lg font-semibold">
           {book.title}
