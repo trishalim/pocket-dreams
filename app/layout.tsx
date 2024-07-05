@@ -34,7 +34,7 @@ export default function RootLayout({
               </div>
             </nav>
           </header>
-          <main className="max-w-4xl mx-auto min-h-screen w-full px-4">
+          <main className="min-h-screen w-full">
             <Providers>
               {children}
             </Providers>

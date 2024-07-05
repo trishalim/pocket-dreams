@@ -25,8 +25,11 @@ export default function BookShelf() {
   }
 
   return (
-    <div className="grid lg:grid-cols-3 gap-5">
-      {data?.map(book => <UserBook book={book.book} key={book.book_id} />)}
+    <div className="grid gap-5">
+      <p className="text-gray-500 text-sm">{data?.length} books</p>
+      <div className="grid lg:grid-cols-3 gap-5">
+        {data?.map(book => <UserBook book={book.book} key={book.book_id} />)}
+      </div>
     </div>
   )
  }
