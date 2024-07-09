@@ -6,7 +6,7 @@ import {BookDocument, OpenLibrarySearchResponse} from "@/app/interfaces/open-lib
 import BookSearchResult from "@/components/BookSearchResult";
 
 export default function SearchBooks() {
-  const [query, setQuery] = useState('lord of the rings')
+  const [query, setQuery] = useState('')
   const [searchQuery, setSearchQuery] = useState(query)
 
   const { isLoading, isError, data, error }  =
@@ -39,22 +39,21 @@ export default function SearchBooks() {
           className="bg-white text-xl w-full px-4 py-3 rounded-md border-0 h-full text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400"
           onChange={(e) => setQuery(e?.target.value)}
           value={query}
-          placeholder="Search books..."
+          placeholder="Enter book title or author"
         />
 
         <button type="submit" className="text-lg rounded-md bg-black text-white px-4 font-medium">Search</button>
       </form>
 
-      <div className="mt-5">
-        <p className="text-gray-500 text-sm">
-          Search results for <span className="italic">{query}</span>
-        </p>
-        {isLoading ? 'Loading...' : (
-          <div className="grid border-y border-gray-100 mt-3 divide-y divide-gray-100">
-            {data?.docs?.map((r: BookDocument) => (<BookSearchResult key={r.key} book={r}/>))}
-          </div>
-        )}
-      </div>
+      {query.length > 0 && (
+        <div className="mt-5">
+          {isLoading ? 'Loading...' : (
+            <div className="grid border-y border-gray-100 mt-3 divide-y divide-gray-100">
+              {data?.docs?.map((r: BookDocument) => (<BookSearchResult key={r.key} book={r}/>))}
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 }

@@ -5,9 +5,15 @@ import {addBook} from "@/app/actions/books";
 import {getUser} from "@/app/actions/user";
 import {addBookToShelf} from "@/app/actions/userBooks";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import Link from "next/link";
+import { useRouter } from 'next/navigation'
 
 export default function BookSearchResult({book}: { book: BookDocument }) {
   const queryClient = useQueryClient()
+  const router = useRouter()
+
+  const split = book.key.split('/')
+  const slug = split[split.length - 1]
 
   const { data: user} = useQuery({
     queryKey: ['user'],
@@ -31,8 +37,10 @@ export default function BookSearchResult({book}: { book: BookDocument }) {
       }
 
       if (user) {
-        await addBook(book)
-        await addBookToShelf(book.key)
+        addBook(book).then(() => {
+          router.push(`/add/${slug}`)
+        })
+        // await addBookToShelf(book.key)
       }
     },
     mutationKey: ['user_with_books', user?.id],
@@ -47,12 +55,18 @@ export default function BookSearchResult({book}: { book: BookDocument }) {
       </div>
       <div>
         <button
-          onClick={() => add()}
           type="button"
-          className="rounded-md border px-3 py-2 font-medium whitespace-nowrap hover:bg-black hover:text-white hover:border-black transition-colors"
-        >
-          Add to shelf
+          onClick={() => add()}
+          className="rounded-md border px-3 py-2 font-medium whitespace-nowrap hover:bg-black hover:text-white hover:border-black transition-colors">
+          Select
         </button>
+        {/*<button*/}
+        {/*  onClick={() => add()}*/}
+        {/*  type="button"*/}
+        {/*  className="rounded-md border px-3 py-2 font-medium whitespace-nowrap hover:bg-black hover:text-white hover:border-black transition-colors"*/}
+        {/*>*/}
+        {/*  Add to shelf*/}
+        {/*</button>*/}
       </div>
     </div>
   )
