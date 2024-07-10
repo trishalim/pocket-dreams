@@ -29,12 +29,9 @@ export default function BookShelf() {
   return (
     <div className="grid gap-5">
       <p className="text-gray-500 text-sm">{data?.length} books</p>
-      <div className="border-t grid lg:border-t-0 lg:grid-cols-3 lg:gap-5">
+      <div className="grid lg:grid-cols-3 gap-5">
         {data?.map((book) => (
-          <div
-            key={book.book_id}
-            className="py-5 border-b lg:border lg:rounded-lg lg:p-3"
-          >
+          <div key={book.book_id} className="border rounded-lg p-4">
             <UserBook book={book} />
           </div>
         ))}
