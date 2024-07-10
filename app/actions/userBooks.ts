@@ -2,6 +2,7 @@
 
 import {getUser} from "@/app/actions/user";
 import {prisma} from "@/utils/prisma";
+import {user_books} from ".prisma/client";
 
 export const addBookToShelf = async (key: string) => {
   const user = await getUser()
@@ -67,5 +68,18 @@ export const getUserBooks = async () => {
     });
 
     return userWithBooks.user_books;
+  }
+}
+
+export const addUserBook = async (userBook: user_books) => {
+  const user = await getUser()
+
+  if (user) {
+    return prisma.user_books.create({
+      data: {
+        ...userBook,
+        user_id: user.id,
+      }
+    })
   }
 }
