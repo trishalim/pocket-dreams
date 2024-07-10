@@ -24,6 +24,8 @@ export default function BookShelf() {
     return <div>Loading books...</div>;
   }
 
+  console.log({ data });
+
   return (
     <div className="grid gap-5">
       <p className="text-gray-500 text-sm">{data?.length} books</p>
@@ -33,7 +35,7 @@ export default function BookShelf() {
             key={book.book_id}
             className="py-5 border-b lg:border lg:rounded-lg lg:p-3"
           >
-            <UserBook book={book.book} />
+            <UserBook book={book} />
           </div>
         ))}
       </div>

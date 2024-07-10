@@ -1,14 +1,23 @@
 "use client";
 
-import type { books } from "@prisma/client";
+import type { books, user_books } from "@prisma/client";
 import { getUser } from "@/app/actions/user";
 import { removeBookFromShelf } from "@/app/actions/userBooks";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
-export default function UserBook({ book }: { book: books }) {
+interface Props extends user_books {
+  book: books;
+}
+
+export default function UserBook({ book }: { book: Props }) {
   const queryClient = useQueryClient();
 
   console.log({ book });
+
+  const { review, rating, read_at } = book;
+  const { title, author_name, id } = book.book;
+  const [readAt, setReadAt] = useState<string | null>();
 
   const { data: user } = useQuery({
     queryKey: ["user"],
@@ -19,7 +28,7 @@ export default function UserBook({ book }: { book: books }) {
 
   const { mutate: remove, isPending: isRemoving } = useMutation({
     mutationFn: () => {
-      return removeBookFromShelf(book.id);
+      return removeBookFromShelf(id);
     },
     onSuccess: () =>
       queryClient.invalidateQueries({
@@ -30,12 +39,26 @@ export default function UserBook({ book }: { book: books }) {
     },
   });
 
+  useEffect(() => {
+    if (read_at) {
+      setReadAt(
+        read_at.toLocaleString("en-US", { month: "short" }) +
+          " " +
+          read_at.getFullYear(),
+      );
+    }
+  });
+
   return (
     <div className="grid gap-3">
       <div>
-        <h2 className="text-lg font-semibold">{book.title}</h2>
-        <p>{book.author_name}</p>
+        <h2 className="text-lg font-semibold">{title}</h2>
+        <p>{author_name}</p>
       </div>
+
+      <p className="line-clamp-5 text-ellipsis text-gray-500">{review}</p>
+      <p>{rating}</p>
+      <p>Read on {readAt}</p>
 
       <button
         onClick={() => remove()}
