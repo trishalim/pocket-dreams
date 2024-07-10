@@ -48,7 +48,7 @@ export default function UserBook({ book }: { book: Props }) {
           read_at.getFullYear(),
       );
     }
-  });
+  }, [read_at]);
 
   return (
     <div className="flex flex-col justify-between gap-3 h-full">

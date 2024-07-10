@@ -7,6 +7,7 @@ import { addUserBook } from "@/app/actions/userBooks";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Error from "./Error";
 import { getUser } from "@/app/actions/user";
+import RatingInput from "@/components/RatingInput";
 
 export default function AddBookForm({ book }: { book: books }) {
   const [rating, setRating] = useState(1);
@@ -68,16 +69,7 @@ export default function AddBookForm({ book }: { book: books }) {
         <label htmlFor="rating" className="font-medium">
           Rating <span className="font-normal">(optional)</span>{" "}
         </label>
-        <input
-          value={rating}
-          onChange={(e) => setRating(e.target.valueAsNumber)}
-          type="range"
-          min="1"
-          max="5"
-          name="rating"
-          id="rating"
-          className="w-36 w-full rounded-md border px-3 py-2"
-        />
+        <RatingInput value={rating} onChange={(value) => setRating(value)} />
       </div>
 
       <div className="flex gap-3 items-center">
