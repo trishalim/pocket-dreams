@@ -4,6 +4,7 @@ import { getUser } from "@/app/actions/user";
 import { prisma } from "@/utils/prisma";
 import { user_books } from ".prisma/client";
 import { UserBookPayload } from "@/app/interfaces/user-book-payload";
+import { books } from "@prisma/client";
 
 export const addBookToShelf = async (key: string) => {
   const user = await getUser();
@@ -52,8 +53,6 @@ export const removeBookFromShelf = async (id: bigint) => {
 export const getUserBooks = async () => {
   const user = await getUser();
 
-  console.log({ user });
-
   if (user) {
     const userWithBooks = await prisma.users.findUniqueOrThrow({
       where: {
@@ -64,11 +63,41 @@ export const getUserBooks = async () => {
           include: {
             book: true,
           },
+          orderBy: {
+            read_at: "desc",
+          },
         },
       },
     });
 
-    return userWithBooks.user_books;
+    const booksByMonth: {
+      month: number;
+      year: number;
+      count: number;
+      user_books: Array<user_books & { book: books }>;
+    }[] = [];
+
+    userWithBooks.user_books.forEach((book) => {
+      const month = book.read_at.getMonth();
+      const year = book.read_at.getFullYear();
+
+      if (booksByMonth[month]) {
+        booksByMonth[month].user_books.push(book);
+        booksByMonth[month].count = booksByMonth[month].count + 1;
+      } else {
+        booksByMonth[month] = {
+          month,
+          year,
+          user_books: [book],
+          count: 1,
+        };
+      }
+    });
+
+    return {
+      totalCount: userWithBooks.user_books.length,
+      byMonth: booksByMonth.reverse(),
+    };
   }
 };
 
