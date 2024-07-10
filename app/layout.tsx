@@ -38,7 +38,7 @@ export default function RootLayout({
               </div>
             </nav>
           </header>
-          <main className="min-h-screen w-full">
+          <main className="w-full">
             <Providers>{children}</Providers>
           </main>
         </div>

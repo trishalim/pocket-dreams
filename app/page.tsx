@@ -1,12 +1,17 @@
 import SearchBooks from "@/components/SearchBooks";
 import BookShelf from "@/components/BookShelf";
+import { getUser } from "@/app/actions/user";
 
 export default async function Index() {
+  const user = await getUser();
+
   return (
     <>
-      <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16">
-        <BookShelf />
-      </div>
+      {user && (
+        <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16">
+          <BookShelf />
+        </div>
+      )}
       <div className="bg-gray-100">
         <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16">
           <h2 className="text-2xl lg:text-4xl font-bold mb-3">
