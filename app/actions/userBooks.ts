@@ -3,6 +3,7 @@
 import { getUser } from "@/app/actions/user";
 import { prisma } from "@/utils/prisma";
 import { user_books } from ".prisma/client";
+import { UserBookPayload } from "@/app/interfaces/user-book-payload";
 
 export const addBookToShelf = async (key: string) => {
   const user = await getUser();
@@ -71,7 +72,7 @@ export const getUserBooks = async () => {
   }
 };
 
-export const addUserBook = async (userBook: user_books) => {
+export const addUserBook = async (userBook: UserBookPayload) => {
   const user = await getUser();
 
   if (user) {

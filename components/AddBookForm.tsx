@@ -16,7 +16,7 @@ export default function AddBookForm({ book }: { book: books }) {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  const user = useQuery({
+  const { data: user } = useQuery({
     queryKey: ["user"],
     queryFn: () => {
       return getUser();
@@ -29,14 +29,14 @@ export default function AddBookForm({ book }: { book: books }) {
         book_id: book.id,
         review,
         rating,
-        read_at: new Date(read_at).toISOString(),
+        read_at: new Date(read_at),
       });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["user_with_books", user?.id],
-      }),
-        router.push("/");
+      });
+      router.push("/");
     },
   });
   const submit = (e: React.FormEvent<HTMLFormElement>) => {

@@ -25,11 +25,15 @@ export default function RootLayout({
         <div className="flex-1 flex flex-col w-full">
           <header>
             <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-              <div className="w-full max-w-4xl flex justify-end items-center p-4 text-sm">
-                {/*<div className="flex gap-3">*/}
-                {/*  <Link className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3" href="/">Home</Link>*/}
-                {/*  <Link className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3" href="/shelf">My book shelf</Link>*/}
-                {/*</div>*/}
+              <div className="w-full max-w-4xl flex justify-between items-center p-4 text-sm">
+                <div className="flex gap-3">
+                  <Link
+                    className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3"
+                    href="/"
+                  >
+                    Home
+                  </Link>
+                </div>
                 <AuthButton />
               </div>
             </nav>
