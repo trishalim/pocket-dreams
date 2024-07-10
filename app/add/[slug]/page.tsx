@@ -1,8 +1,7 @@
 import { prisma } from "@/utils/prisma";
 import AddBookForm from "@/components/AddBookForm";
 
-
-export default async function Page({params}: { params: { slug: string } }) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const book = await prisma.books.findUnique({
     where: {
       open_library_key: `/works/${params.slug}`,
@@ -15,9 +14,7 @@ export default async function Page({params}: { params: { slug: string } }) {
         Add book to your shelf
       </h1>
 
-      {book && (
-        <AddBookForm book={book} />
-      )}
+      {book && <AddBookForm book={book} />}
     </div>
   );
 }

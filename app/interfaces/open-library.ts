@@ -19,4 +19,3 @@ export interface BookDocument {
   author_key: string[];
   public_scan_b: boolean;
 }
-
