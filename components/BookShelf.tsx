@@ -2,9 +2,7 @@
 
 import { getUserBooks } from "@/app/actions/userBooks";
 import { useQuery } from "@tanstack/react-query";
-import UserBook from "@/components/UserBook";
 import { getUser } from "@/app/actions/user";
-import { months } from "@/utils/months";
 import BooksByMonth from "@/components/BooksByMonth";
 import BooksByYear from "@/components/BooksByYear";
 import { useState } from "react";
@@ -26,11 +24,13 @@ export default function BookShelf() {
 
   const [view, setView] = useState<"monthly" | "yearly">("monthly");
 
+  if (!user) {
+    return <></>;
+  }
+
   if (isLoading) {
     return <div>Loading books...</div>;
   }
-
-  console.log({ data });
 
   const classNames = {
     base: "font-medium px-3 hover:bg-gray-100 rounded py-2 px-3",
@@ -38,7 +38,7 @@ export default function BookShelf() {
   };
 
   return (
-    <div className="grid gap-8">
+    <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16 grid gap-8">
       <div className="flex items-baseline gap-3 border-b pb-2">
         <button
           type="button"
