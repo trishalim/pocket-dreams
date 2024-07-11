@@ -22,7 +22,7 @@ export default function BookShelf() {
     },
   });
 
-  const [view, setView] = useState<"monthly" | "yearly">("monthly");
+  const [view, setView] = useState<"monthly" | "yearly">("yearly");
 
   if (!user) {
     return <></>;
@@ -42,17 +42,17 @@ export default function BookShelf() {
       <div className="flex items-baseline gap-3 border-b pb-2">
         <button
           type="button"
-          className={`${classNames.base} ${view === "monthly" && classNames.active}`}
-          onClick={() => setView("monthly")}
-        >
-          Monthly view
-        </button>
-        <button
-          type="button"
           className={`${classNames.base} ${view === "yearly" && classNames.active}`}
           onClick={() => setView("yearly")}
         >
           Yearly view
+        </button>
+        <button
+          type="button"
+          className={`${classNames.base} ${view === "monthly" && classNames.active}`}
+          onClick={() => setView("monthly")}
+        >
+          Monthly view
         </button>
       </div>
 
