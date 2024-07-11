@@ -45,7 +45,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <h2 className="uppercase text-sm tracking-widest font-semibold mb-3 border-b pb-3">
           Review
         </h2>
-        <p className="text-gray-800 leading-relaxed">{book.review}</p>
+        {book.review ? (
+          <p className="text-gray-800 leading-relaxed">{book.review}</p>
+        ) : (
+          <p className="text-gray-500 italic leading-relaxed">
+            You did not write a review for this book yet.
+          </p>
+        )}
       </div>
     </div>
   );

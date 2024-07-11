@@ -4,6 +4,7 @@ import { BookShelfResponse } from "@/app/interfaces/book-shelf";
 import { user_books } from ".prisma/client";
 import { books } from "@prisma/client";
 import BookOpenIcon from "@/components/icons/BookOpenIcon";
+import Link from "next/link";
 
 export default function BooksByYear({ data }: { data: BookShelfResponse }) {
   if (data?.byMonth.length === 0) {
@@ -53,9 +54,14 @@ export default function BooksByYear({ data }: { data: BookShelfResponse }) {
               {month.user_books && (
                 <ul className="text-sm leading-relaxed flex flex-col gap-1">
                   {month.user_books.map((book) => (
-                    <li key={book.book_id} className="flex gap-1.5">
-                      <BookOpenIcon className="mt-0.5 text-lg text-gray-300" />{" "}
-                      {book.book.title}
+                    <li key={book.book_id}>
+                      <Link
+                        href={`/book/${book.book_id}`}
+                        className="flex gap-1.5"
+                      >
+                        <BookOpenIcon className="mt-0.5 text-lg text-gray-300" />{" "}
+                        {book.book.title}
+                      </Link>
                     </li>
                   ))}
                 </ul>
