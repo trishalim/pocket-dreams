@@ -5,6 +5,7 @@ import { prisma } from "@/utils/prisma";
 import { user_books } from ".prisma/client";
 import { UserBookPayload } from "@/app/interfaces/user-book-payload";
 import { books } from "@prisma/client";
+import { BookShelfMonth, BookShelfResponse } from "@/app/interfaces/book-shelf";
 
 export const addBookToShelf = async (key: string) => {
   const user = await getUser();
@@ -50,7 +51,9 @@ export const removeBookFromShelf = async (id: bigint) => {
   }
 };
 
-export const getUserBooks = async () => {
+export const getUserBooks = async (): Promise<
+  BookShelfResponse | undefined
+> => {
   const user = await getUser();
 
   if (user) {
@@ -70,12 +73,7 @@ export const getUserBooks = async () => {
       },
     });
 
-    const booksByMonth: {
-      month: number;
-      year: number;
-      count: number;
-      user_books: Array<user_books & { book: books }>;
-    }[] = [];
+    const booksByMonth: BookShelfMonth[] = [];
 
     userWithBooks.user_books.forEach((book) => {
       const month = book.read_at.getMonth();

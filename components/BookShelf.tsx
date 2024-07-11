@@ -5,6 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import UserBook from "@/components/UserBook";
 import { getUser } from "@/app/actions/user";
 import { months } from "@/utils/months";
+import BooksByMonth from "@/components/BooksByMonth";
+import BooksByYear from "@/components/BooksByYear";
+import { useState } from "react";
 
 export default function BookShelf() {
   const { data: user } = useQuery({
@@ -21,35 +24,40 @@ export default function BookShelf() {
     },
   });
 
+  const [view, setView] = useState<"monthly" | "yearly">("monthly");
+
   if (isLoading) {
     return <div>Loading books...</div>;
   }
 
   console.log({ data });
 
+  const classNames = {
+    base: "font-medium px-3 hover:bg-gray-100 rounded py-2 px-3",
+    active: "bg-gray-100",
+  };
+
   return (
     <div className="grid gap-8">
       <div className="flex items-baseline gap-3 border-b pb-2">
-        <h1 className="text-2xl font-semibold">Books read in 2024</h1>
-        <p className="text-gray-500 text-sm">({data?.totalCount} books)</p>
+        <button
+          type="button"
+          className={`${classNames.base} ${view === "monthly" && classNames.active}`}
+          onClick={() => setView("monthly")}
+        >
+          Monthly view
+        </button>
+        <button
+          type="button"
+          className={`${classNames.base} ${view === "yearly" && classNames.active}`}
+          onClick={() => setView("yearly")}
+        >
+          Yearly view
+        </button>
       </div>
-      {data?.byMonth.map((month) => (
-        <div key={month.month} className="grid gap-3">
-          <div className="flex items-baseline gap-3">
-            <h2 className="text-xl font-semibold">{months[month.month]}</h2>
-            <p className="text-gray-500 text-sm">
-              ({month.count} {month.count === 1 ? "book" : "books"})
-            </p>
-          </div>
-          <div className="grid lg:grid-cols-3 gap-5">
-            {month.user_books.map((book) => (
-              <div key={book.book_id} className="border rounded-lg p-4">
-                <UserBook book={book} />
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+
+      {data && view === "monthly" && <BooksByMonth data={data} />}
+      {data && view === "yearly" && <BooksByYear data={data} />}
     </div>
   );
 }
