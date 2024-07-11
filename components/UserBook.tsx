@@ -6,6 +6,7 @@ import { removeBookFromShelf } from "@/app/actions/userBooks";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 // import { useEffect, useState } from "react";
 import Rating from "@/components/Rating";
+import Link from "next/link";
 
 interface Props extends user_books {
   book: books;
@@ -51,7 +52,10 @@ export default function UserBook({ book }: { book: Props }) {
   // }, [read_at]);
 
   return (
-    <div className="flex flex-col justify-between gap-3 h-full">
+    <Link
+      href={`/book/${book.book_id}`}
+      className="flex flex-col justify-between gap-3 h-full"
+    >
       <div className="grid gap-2">
         <div>
           <h2 className="text-lg leading-none font-semibold mb-1">{title}</h2>
@@ -80,6 +84,6 @@ export default function UserBook({ book }: { book: Props }) {
           {isRemoving ? "Removing..." : "Remove"}
         </button>
       </div>
-    </div>
+    </Link>
   );
 }

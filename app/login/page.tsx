@@ -36,13 +36,15 @@ export default function Login({
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signUp({
+    const { error, data } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
+
+    console.log({ data, error });
 
     if (error) {
       return redirect("/login?message=Could not authenticate user");
