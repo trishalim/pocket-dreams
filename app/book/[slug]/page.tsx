@@ -3,16 +3,16 @@ import { getUser } from "@/app/actions/user";
 import Rating from "@/components/Rating";
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  // const user = await getUser();
-  //
-  // if (!user) {
-  //   return <div>Loading...</div>;
-  // }
+  const user = await getUser();
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
   const book = await prisma.user_books.findUnique({
     where: {
       user_id_book_id: {
-        user_id: "c0b12dbf-2020-4cbe-a80a-b3eb2ad9546a",
+        user_id: user.id,
         book_id: parseInt(params.slug),
       },
     },
