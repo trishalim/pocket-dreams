@@ -10,5 +10,5 @@ export interface BookShelfMonth {
   month: number;
   year: number;
   count: number;
-  user_books?: Array<user_books & { book: books }>;
+  user_books: Array<user_books & { book: books }>;
 }

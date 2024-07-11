@@ -79,7 +79,7 @@ export const getUserBooks = async (): Promise<
       const month = book.read_at.getMonth();
       const year = book.read_at.getFullYear();
 
-      if (booksByMonth[month]) {
+      if (booksByMonth[month]?.user_books) {
         booksByMonth[month].user_books.push(book);
         booksByMonth[month].count = booksByMonth[month].count + 1;
       } else {
