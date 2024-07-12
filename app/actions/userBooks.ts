@@ -111,3 +111,22 @@ export const addUserBook = async (userBook: UserBookPayload) => {
     });
   }
 };
+
+export const updateUserBook = async (userBook: UserBookPayload) => {
+  const user = await getUser();
+
+  if (user) {
+    return prisma.user_books.update({
+      data: {
+        ...userBook,
+        user_id: user.id,
+      },
+      where: {
+        user_id_book_id: {
+          user_id: user.id,
+          book_id: userBook.book_id,
+        },
+      },
+    });
+  }
+};

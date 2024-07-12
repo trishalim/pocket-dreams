@@ -1,7 +1,7 @@
 import { prisma } from "@/utils/prisma";
 import { getUser } from "@/app/actions/user";
 import Rating from "@/components/Rating";
-import Link from "next/link";
+import EditBookForm from "@/components/EditBookForm";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const user = await getUser();
@@ -34,33 +34,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </h1>
         <p>by {book.book.author_name}</p>
       </div>
-      <div className="flex gap-5 items-center">
-        <Rating rating={book.rating} />
-        <p>
-          Read on {book.read_at.toLocaleString("en-US", { month: "short" })}{" "}
-          {book.read_at.getFullYear()}
-        </p>
-      </div>
 
-      <div>
-        <h2 className="uppercase text-sm tracking-widest font-semibold mb-3 border-b pb-3">
-          Review
-        </h2>
-        {book.review ? (
-          <p className="text-gray-800 leading-relaxed">{book.review}</p>
-        ) : (
-          <p className="text-gray-500 italic leading-relaxed">
-            You did not write a review for this book yet.
-          </p>
-        )}
-      </div>
-
-      <Link
-        href={`/book/${book.book_id}/edit`}
-        className="text-sm text-gray-500 underline"
-      >
-        Edit
-      </Link>
+      <EditBookForm book={book} />
     </div>
   );
 }
