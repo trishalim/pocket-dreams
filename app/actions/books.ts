@@ -1,10 +1,9 @@
-"use server";
-
 import { BookDocument } from "@/app/interfaces/open-library";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/client";
 
-const supabase = createClient();
-export const addBook = async (book: BookDocument) => {
+export const addBook = (book: BookDocument) => {
+  const supabase = createClient();
+
   const {
     title,
     title_sort,
@@ -24,9 +23,7 @@ export const addBook = async (book: BookDocument) => {
     open_library_cover_edition_key: cover_edition_key,
   };
 
-  return await supabase.from("books").upsert(payload);
-};
+  console.log({ payload });
 
-export const getBookByKey = async (key: string) => {
-  return await supabase.from("books").select("id").eq("open_library_key", key);
+  return supabase.from("books").upsert(payload);
 };
