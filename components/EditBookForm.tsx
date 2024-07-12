@@ -45,8 +45,9 @@ export default function EditBookForm({
       });
     },
     onSuccess: () => {
+      console.log("invalidate", ["user_book", user?.id, book.book.id]);
       queryClient.invalidateQueries({
-        queryKey: ["user_with_books", user?.id],
+        queryKey: ["user_book", user?.id, parseInt(book.book.id)],
       });
       router.back();
     },
@@ -59,7 +60,6 @@ export default function EditBookForm({
   return (
     <form className="grid gap-4" onSubmit={submit}>
       <div className="grid gap-2">
-        {review}
         <label htmlFor="review" className="font-medium">
           Review <span className="font-normal">(optional)</span>{" "}
         </label>

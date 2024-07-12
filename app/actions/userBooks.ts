@@ -130,3 +130,21 @@ export const updateUserBook = async (userBook: UserBookPayload) => {
     });
   }
 };
+
+export const getUserBook = async (bookId: number) => {
+  const user = await getUser();
+
+  if (user) {
+    return prisma.user_books.findUnique({
+      where: {
+        user_id_book_id: {
+          user_id: user.id,
+          book_id: bookId,
+        },
+      },
+      include: {
+        book: true,
+      },
+    });
+  }
+};
