@@ -15,6 +15,8 @@ export default function RatingInput({ value, onChange }: RatingInputProps) {
     onChange(newRating);
   };
 
+  console.log({ value });
+
   return (
     <div className="flex gap-0.5 text-lg text-yellow-400">
       {[...Array(5)].map((_, i) => {

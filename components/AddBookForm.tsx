@@ -10,9 +10,9 @@ import { getUser } from "@/app/actions/user";
 import RatingInput from "@/components/RatingInput";
 
 export default function AddBookForm({ book }: { book: books }) {
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
-  const [read_at, setReadAt] = useState(new Date().toISOString());
+  const [read_at, setReadAt] = useState(new Date().toISOString().split("T")[0]);
 
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -24,7 +24,11 @@ export default function AddBookForm({ book }: { book: books }) {
     },
   });
 
-  const { mutate: add, error } = useMutation({
+  const {
+    mutate: add,
+    isPending,
+    error,
+  } = useMutation({
     mutationFn: () => {
       return addUserBook({
         book_id: book.id,
@@ -89,8 +93,9 @@ export default function AddBookForm({ book }: { book: books }) {
       <button
         type="submit"
         className="rounded-md bg-black text-white px-4 py-2 font-medium"
+        disabled={isPending}
       >
-        Add to shelf
+        {isPending ? "Adding..." : "Add to shelf"}
       </button>
 
       {error && <Error error={error} />}
