@@ -7,6 +7,7 @@ import BooksByMonth from "@/components/BooksByMonth";
 import BooksByYear from "@/components/BooksByYear";
 import { useState } from "react";
 import Link from "next/link";
+import Stats from "@/components/Stats";
 
 export default function BookShelf() {
   const { data: user } = useQuery({
@@ -40,6 +41,8 @@ export default function BookShelf() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16 grid gap-8">
+      <h2 className="text-xl font-semibold">This year</h2>
+      {data && <Stats data={data} />}
       <div className="flex items-baseline justify-between gap-3 border-b pb-2">
         <div className="flex gap-3">
           <button

@@ -65,7 +65,7 @@ export const getUserBooks = async (): Promise<
             book: true,
           },
           orderBy: {
-            read_at: "desc",
+            rating: "desc",
           },
         },
       },
@@ -90,9 +90,16 @@ export const getUserBooks = async (): Promise<
       }
     });
 
+    const bestMonth = booksByMonth.sort((a, b) => b.count - a.count)[0];
+
     return {
       totalCount: userWithBooks.user_books.length,
+      favorites: userWithBooks.user_books
+        .filter((book) => book.rating && book.rating > 3)
+        .slice(0, 3),
       byMonth: booksByMonth.reverse(),
+      bestMonth: bestMonth.month,
+      bestMonthCount: bestMonth.count,
     };
   }
 };
