@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     where: {
       user_id_book_id: {
         user_id: user.id,
-        book_id: parseInt(params.slug),
+        book_id: params.slug,
       },
     },
     include: {

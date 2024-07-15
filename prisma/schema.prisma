@@ -305,7 +305,6 @@ model users {
 }
 
 model books {
-  id                             BigInt       @id @default(autoincrement())
   open_library_key               String?      @unique(map: "books_key_key")
   title                          String?
   title_sort                     String?
@@ -315,14 +314,8 @@ model books {
   number_of_pages_median         Int?
   open_library_cover_edition_key String?
   created_at                     DateTime?    @default(now()) @db.Timestamp(6)
+  id                             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_books                     user_books[]
-
-  @@schema("public")
-}
-
-model notes {
-  id    BigInt  @id @default(autoincrement())
-  title String?
 
   @@schema("public")
 }
@@ -331,9 +324,9 @@ model user_books {
   user_id    String   @db.Uuid
   created_at DateTime @default(now()) @db.Timestamptz(6)
   review     String?
-  book_id    BigInt
   read_at    DateTime @default(now()) @db.Timestamp(6)
   rating     Int?     @db.SmallInt
+  book_id    String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user       users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "book_shelf_user_id_fkey1")
   book       books    @relation(fields: [book_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 

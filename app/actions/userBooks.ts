@@ -2,9 +2,7 @@
 
 import { getUser } from "@/app/actions/user";
 import { prisma } from "@/utils/prisma";
-import { user_books } from ".prisma/client";
 import { UserBookPayload } from "@/app/interfaces/user-book-payload";
-import { books } from "@prisma/client";
 import { BookShelfMonth, BookShelfResponse } from "@/app/interfaces/book-shelf";
 
 export const addBookToShelf = async (key: string) => {
@@ -36,7 +34,7 @@ export const addBookToShelf = async (key: string) => {
 
   console.log("Added to shelf", book.id);
 };
-export const removeBookFromShelf = async (id: bigint) => {
+export const removeBookFromShelf = async (id: string) => {
   const user = await getUser();
 
   if (user) {
@@ -131,7 +129,7 @@ export const updateUserBook = async (userBook: UserBookPayload) => {
   }
 };
 
-export const getUserBook = async (bookId: number) => {
+export const getUserBook = async (bookId: string) => {
   const user = await getUser();
 
   if (user) {

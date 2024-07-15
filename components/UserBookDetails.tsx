@@ -1,6 +1,5 @@
 "use client";
 
-import { prisma } from "@/utils/prisma";
 import Rating from "@/components/Rating";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
@@ -15,10 +14,10 @@ export default function UserBookDetails({
   user: User;
 }) {
   const { data: book, isPending } = useQuery({
-    queryKey: ["user_book", user.id, parseInt(slug)],
+    queryKey: ["user_book", user.id, slug],
     queryFn: () => {
-      console.log({ queryKey: ["user_book", user.id, BigInt(slug)] });
-      return getUserBook(parseInt(slug));
+      console.log({ queryKey: ["user_book", user.id, slug] });
+      return getUserBook(slug);
     },
   });
 
