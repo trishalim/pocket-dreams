@@ -1,4 +1,3 @@
-import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Link from "next/link";
 import AuthButton from "@/components/AuthButton";

@@ -1,6 +1,4 @@
 import { BookShelfResponse } from "@/app/interfaces/book-shelf";
-import { months } from "@/utils/months";
-import Link from "next/link";
 import BookList from "@/components/BookList";
 
 export default function Stats({ data }: { data: BookShelfResponse }) {
