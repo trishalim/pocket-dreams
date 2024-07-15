@@ -1,5 +1,7 @@
 import { BookShelfResponse } from "@/app/interfaces/book-shelf";
 import { months } from "@/utils/months";
+import Link from "next/link";
+import BookList from "@/components/BookList";
 
 export default function Stats({ data }: { data: BookShelfResponse }) {
   const { totalCount, byMonth } = data;
@@ -18,11 +20,7 @@ export default function Stats({ data }: { data: BookShelfResponse }) {
       </div>
       <div className="border p-3 rounded flex flex-col gap-1">
         <h2 className="font-semibold">Favorites</h2>
-        <ul className="list-disc pl-5">
-          {data.favorites.map((book) => (
-            <li key={book.book_id}>{book.book.title}</li>
-          ))}
-        </ul>
+        <BookList user_books={data.favorites} />
       </div>
     </div>
   );

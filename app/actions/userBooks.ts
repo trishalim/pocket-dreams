@@ -90,7 +90,7 @@ export const getUserBooks = async (): Promise<
       }
     });
 
-    const bestMonth = booksByMonth.sort((a, b) => b.count - a.count)[0];
+    const bestMonth = booksByMonth.slice().sort((a, b) => b.count - a.count)[0];
 
     return {
       totalCount: userWithBooks.user_books.length,
