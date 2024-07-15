@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 import AuthButton from "@/components/AuthButton";
 import Providers from "@/components/Providers";
+import { fraunces, roboto } from "@/app/fonts";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -20,7 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
+    <html
+      lang="en"
+      className={`${fraunces.className} ${roboto.className} font-sans`}
+    >
       <body className="flex-1 w-full flex flex-col items-center">
         <div className="flex-1 flex flex-col w-full">
           <header>

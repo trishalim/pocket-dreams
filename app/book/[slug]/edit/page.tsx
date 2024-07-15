@@ -29,7 +29,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16 grid gap-6">
       <div>
-        <h1 className="text-2xl lg:text-4xl font-bold mb-3">
+        <h1 className="font-serif text-2xl lg:text-4xl font-bold mb-3">
           {book.book.title}
         </h1>
         <p>by {book.book.author_name}</p>

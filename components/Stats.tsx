@@ -19,7 +19,7 @@ export default function Stats({ data }: { data: BookShelfResponse }) {
         <p className="text-gray-500">books per month</p>
       </div>
       <div className="border p-3 rounded flex flex-col gap-1">
-        <h2 className="font-semibold">Favorites</h2>
+        <h2 className="font-semibold">Best reads</h2>
         <BookList user_books={data.favorites} />
       </div>
     </div>

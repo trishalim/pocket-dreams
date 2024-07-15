@@ -12,7 +12,9 @@ export default function BooksByMonth({ data }: { data: BookShelfResponse }) {
       {data?.byMonth.map((month) => (
         <div key={month.month} className="grid gap-3">
           <div className="flex items-baseline gap-3">
-            <h2 className="text-xl font-semibold">{months[month.month]}</h2>
+            <h2 className="font-serif text-xl font-semibold">
+              {months[month.month]}
+            </h2>
             <p className="text-gray-500 text-sm">
               ({month.count} {month.count === 1 ? "book" : "books"})
             </p>

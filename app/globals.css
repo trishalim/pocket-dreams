@@ -30,4 +30,8 @@
   * {
     @apply border-foreground/20;
   }
+
+  html {
+    font-family: var(--font-fraunces);
+  }
 }
