@@ -24,7 +24,7 @@ export default function BookShelf() {
     },
   });
 
-  const [view, setView] = useState<"monthly" | "yearly">("yearly");
+  const [view, setView] = useState<"monthly" | "yearly">("monthly");
 
   if (!user) {
     return <></>;

@@ -15,6 +15,8 @@ export default function BookSearchResult({ book }: { book: BookDocument }) {
   const split = book.key.split("/");
   const slug = split[split.length - 1];
 
+  console.log("search result: ", book);
+
   const { data: user } = useQuery({
     queryKey: ["user"],
     queryFn: () => {
