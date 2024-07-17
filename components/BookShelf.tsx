@@ -41,7 +41,9 @@ export default function BookShelf() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16 grid gap-8">
-      <h2 className="font-serif text-xl font-semibold">This year</h2>
+      <h1 className="font-serif text-xl md:text-4xl font-semibold">
+        Books read this year
+      </h1>
       {data && <Stats data={data} />}
       <div className="flex items-baseline justify-between gap-3 border-b pb-2">
         <div className="flex gap-3">
