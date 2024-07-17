@@ -41,31 +41,35 @@ export default function UserBook({ book }: { book: Props }) {
   });
 
   return (
-    <div className="rounded-xl flex flex-col border shadow-sm bg-white">
-      <Link
-        href={`/book/${book.book_id}`}
-        className="p-5 flex-1 h-[240px] flex justify-center items-center"
-      >
+    <div className="rounded p-4 border sm:p-0 sm:border-0 sm:space-y-6 flex gap-4 sm:block">
+      <Link href={`/book/${book.book_id}`} className="sm:flex-1 sm:block">
         <Image
-          width={130}
+          width={180}
           height={200}
           src={coverUrl}
           objectFit="cover"
           alt=""
-          className="rounded-lg"
+          className="rounded-l-sm rounded-r-xl shadow-lg h-full w-auto h-[120px] w-auto sm:h-[240px] lg:h-[260px] "
         />
       </Link>
 
-      <div className="flex-1 flex flex-col justify-between gap-3 pb-5 px-5 rounded-lg">
+      <div className="flex-1 p-3 sm:p-0">
         <div>
-          <h2 className="text-lg font-semibold mb-1">{title}</h2>
-          <div className="flex gap-2 items-center text-xs text-gray-500">
-            <p>{author_name}</p>
-            <div className="flex gap-0.5 text-yellow-400">
-              <StarIcon className="text-yellow-400 mt-px" />
-              {rating}
+          <Link href={`/book/${book.book_id}`}>
+            <h2 className="font-semibold mb-1">{title}</h2>
+            <div className="flex gap-2 items-center text-sm text-gray-500 mb-2">
+              <p>{author_name}</p>
+              <div className="hidden sm:flex gap-0.5 text-xs items-center leading-none font-semibold">
+                <StarIcon className="text-yellow-400 text-base -mt-px" />
+                {rating}
+              </div>
             </div>
+          </Link>
+
+          <div className="sm:hidden">
+            <Rating rating={rating} />
           </div>
+
           {review && (
             <p className="mt-3 line-clamp-5 text-sm italic text-ellipsis text-gray-500">
               {review}
@@ -76,7 +80,7 @@ export default function UserBook({ book }: { book: Props }) {
           onClick={() => remove()}
           type="button"
           disabled={isRemoving}
-          className="text-gray-500 text-sm underline text-left"
+          className="text-gray-500 text-xs underline text-left"
         >
           {isRemoving ? "Removing..." : "Remove"}
         </button>
