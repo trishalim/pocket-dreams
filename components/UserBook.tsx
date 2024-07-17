@@ -6,8 +6,8 @@ import { removeBookFromShelf } from "@/app/actions/userBooks";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Rating from "@/components/Rating";
 import Link from "next/link";
-import Image from "next/image";
 import StarIcon from "@/components/icons/StarIcon";
+import BookCover from "@/components/BookCover";
 
 interface Props extends user_books {
   book: books;
@@ -43,13 +43,12 @@ export default function UserBook({ book }: { book: Props }) {
   return (
     <div className="rounded p-4 border sm:p-0 sm:border-0 sm:space-y-6 flex gap-4 sm:block">
       <Link href={`/book/${book.book_id}`} className="sm:flex-1 sm:block">
-        <Image
+        <BookCover
+          book={book.book}
           width={180}
           height={200}
-          src={coverUrl}
           objectFit="cover"
-          alt=""
-          className="rounded-l-sm rounded-r-xl shadow-lg h-[120px] w-auto sm:h-[240px] lg:h-[260px] "
+          className="shadow-lg h-[120px] w-auto sm:h-[240px] lg:h-[260px] "
         />
       </Link>
 
@@ -67,7 +66,7 @@ export default function UserBook({ book }: { book: Props }) {
           </Link>
 
           <div className="sm:hidden">
-            <Rating rating={rating} />
+            <Rating rating={rating} className="text-lg" />
           </div>
 
           {review && (

@@ -1,9 +1,9 @@
 import { prisma } from "@/utils/prisma";
 import { getUser } from "@/app/actions/user";
-import Rating from "@/components/Rating";
 import EditBookForm from "@/components/EditBookForm";
 import Container from "@/components/Container";
 import { redirect } from "next/navigation";
+import UserBookHeader from "@/components/UserBookHeader";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const user = await getUser();
@@ -31,12 +31,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Container className="grid gap-6">
-      <div>
-        <h1 className="font-serif text-2xl lg:text-4xl font-bold mb-3">
-          {book.book.title}
-        </h1>
-        <p>by {book.book.author_name}</p>
-      </div>
+      <UserBookHeader book={book} />
 
       <EditBookForm book={book} />
     </Container>
