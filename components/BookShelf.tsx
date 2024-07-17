@@ -31,7 +31,7 @@ export default function BookShelf() {
   }
 
   if (isLoading) {
-    return <div>Loading books...</div>;
+    return <>Loading books...</>;
   }
 
   const classNames = {
@@ -40,7 +40,7 @@ export default function BookShelf() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16 grid gap-8">
+    <>
       <h1 className="font-serif text-3xl md:text-4xl font-semibold">
         Books read this year
       </h1>
@@ -74,6 +74,6 @@ export default function BookShelf() {
 
       {data && view === "monthly" && <BooksByMonth data={data} />}
       {data && view === "yearly" && <BooksByYear data={data} />}
-    </div>
+    </>
   );
 }

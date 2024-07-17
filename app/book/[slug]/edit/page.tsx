@@ -2,12 +2,15 @@ import { prisma } from "@/utils/prisma";
 import { getUser } from "@/app/actions/user";
 import Rating from "@/components/Rating";
 import EditBookForm from "@/components/EditBookForm";
+import Container from "@/components/Container";
+import { redirect } from "next/navigation";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const user = await getUser();
 
   if (!user) {
-    return <div>Loading...</div>;
+    redirect("/login");
+    return;
   }
 
   const book = await prisma.user_books.findUnique({
@@ -27,7 +30,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16 grid gap-6">
+    <Container className="grid gap-6">
       <div>
         <h1 className="font-serif text-2xl lg:text-4xl font-bold mb-3">
           {book.book.title}
@@ -36,6 +39,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </div>
 
       <EditBookForm book={book} />
-    </div>
+    </Container>
   );
 }

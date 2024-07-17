@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { getUserBook } from "@/app/actions/userBooks";
 import { User } from "@supabase/auth-js";
+import Container from "@/components/Container";
 
 export default function UserBookDetails({
   slug,
@@ -22,15 +23,15 @@ export default function UserBookDetails({
   });
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return <Container>Loading...</Container>;
   }
 
   if (!book) {
-    return <div>Book not found</div>;
+    return <Container>Book not found</Container>;
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16 grid gap-6">
+    <Container className="grid gap-5">
       <div>
         <h1 className="font-serif text-2xl lg:text-4xl font-bold mb-3">
           {book.book.title}
@@ -61,6 +62,6 @@ export default function UserBookDetails({
       >
         Edit
       </Link>
-    </div>
+    </Container>
   );
 }

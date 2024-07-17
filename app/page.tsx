@@ -1,17 +1,20 @@
 import SearchBooks from "@/components/SearchBooks";
 import BookShelf from "@/components/BookShelf";
+import Container from "@/components/Container";
 
 export default async function Index() {
   return (
     <>
-      <BookShelf />
+      <Container className="grid gap-8">
+        <BookShelf />
+      </Container>
       <div className="bg-gray-100">
-        <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16">
+        <Container>
           <h2 className="font-serif text-2xl md:text-4xl font-semibold mb-5">
             What have you read lately?
           </h2>
           <SearchBooks></SearchBooks>
-        </div>
+        </Container>
       </div>
     </>
   );
