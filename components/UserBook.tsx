@@ -49,7 +49,7 @@ export default function UserBook({ book }: { book: Props }) {
           src={coverUrl}
           objectFit="cover"
           alt=""
-          className="rounded-l-sm rounded-r-xl shadow-lg h-full w-auto h-[120px] w-auto sm:h-[240px] lg:h-[260px] "
+          className="rounded-l-sm rounded-r-xl shadow-lg h-[120px] w-auto sm:h-[240px] lg:h-[260px] "
         />
       </Link>
 

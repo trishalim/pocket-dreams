@@ -41,7 +41,7 @@ export default function BookShelf() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 lg:py-16 grid gap-8">
-      <h1 className="font-serif text-xl md:text-4xl font-semibold">
+      <h1 className="font-serif text-3xl md:text-4xl font-semibold">
         Books read this year
       </h1>
       {data && <Stats data={data} />}
