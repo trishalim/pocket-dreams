@@ -38,7 +38,7 @@ export default function BooksByYear({ data }: { data: BookShelfResponse }) {
               className="md:aspect-square border p-3 rounded"
             >
               <div className="flex justify-between gap-3 mb-3">
-                <h2 className="font-serif text-lg font-semibold">
+                <h2 className="font-serif text-lg font-medium">
                   {month.monthName}
                 </h2>
                 {month.count && (

@@ -6,7 +6,7 @@ export default function Rating({ rating }: { rating: number | null }) {
   const outline = max - (rating || 0);
   return (
     <div className="flex gap-0.5 text-lg text-yellow-400">
-      {rating && [...Array(rating)].map((x, i) => <StarIcon key={i} />)}
+      {rating ? [...Array(rating)].map((x, i) => <StarIcon key={i} />) : <></>}
       {[...Array(outline)].map((x, i) => (
         <StarOutlineIcon key={i} />
       ))}

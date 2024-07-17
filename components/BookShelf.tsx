@@ -49,17 +49,17 @@ export default function BookShelf() {
         <div className="flex gap-3">
           <button
             type="button"
-            className={`${classNames.base} ${view === "yearly" && classNames.active}`}
-            onClick={() => setView("yearly")}
-          >
-            Yearly
-          </button>
-          <button
-            type="button"
             className={`${classNames.base} ${view === "monthly" && classNames.active}`}
             onClick={() => setView("monthly")}
           >
             Monthly
+          </button>
+          <button
+            type="button"
+            className={`${classNames.base} ${view === "yearly" && classNames.active}`}
+            onClick={() => setView("yearly")}
+          >
+            Yearly
           </button>
         </div>
 
