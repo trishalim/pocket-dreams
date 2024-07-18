@@ -1,6 +1,6 @@
 "use client";
 
-import { getUserBooks } from "@/app/actions/userBooks";
+import { getUserBooks, getYears } from "@/app/actions/userBooks";
 import { useQuery } from "@tanstack/react-query";
 import { getUser } from "@/app/actions/user";
 import BooksByMonth from "@/components/BooksByMonth";
@@ -9,7 +9,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Stats from "@/components/Stats";
 
-export default function BookShelf() {
+export default function BookShelf({ year }: { year: number }) {
   const { data: user } = useQuery({
     queryKey: ["user"],
     queryFn: () => {
@@ -20,7 +20,7 @@ export default function BookShelf() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["user_with_books", user?.id],
     queryFn: () => {
-      return getUserBooks();
+      return getUserBooks(year);
     },
   });
 
@@ -42,7 +42,7 @@ export default function BookShelf() {
   return (
     <>
       <h1 className="font-serif text-3xl md:text-4xl font-semibold">
-        Books read this year
+        Books read in {year}
       </h1>
       {data && <Stats data={data} />}
       <div className="flex items-baseline justify-between gap-3 border-b pb-2">

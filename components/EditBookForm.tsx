@@ -49,6 +49,9 @@ export default function EditBookForm({
       queryClient.invalidateQueries({
         queryKey: ["user_book", user?.id, book.book.id],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["user_with_books", user?.id],
+      });
       router.back();
     },
   });

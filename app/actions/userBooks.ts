@@ -49,12 +49,23 @@ export const removeBookFromShelf = async (id: string) => {
   }
 };
 
-export const getUserBooks = async (): Promise<
-  BookShelfResponse | undefined
-> => {
+export const getUserBooks = async (
+  year?: number,
+): Promise<BookShelfResponse | undefined> => {
   const user = await getUser();
 
+  console.log({ year });
+
   if (user) {
+    const where = year
+      ? {
+          read_at: {
+            gte: new Date(`1-1-${year}`),
+            lte: new Date(`12-31-${year}`),
+          },
+        }
+      : {};
+
     const userWithBooks = await prisma.users.findUniqueOrThrow({
       where: {
         id: user.id,
@@ -67,6 +78,7 @@ export const getUserBooks = async (): Promise<
           orderBy: {
             rating: "desc",
           },
+          where,
         },
       },
     });
@@ -151,5 +163,21 @@ export const getUserBook = async (bookId: string) => {
         book: true,
       },
     });
+  }
+};
+
+export const getYears = async () => {
+  const user = await getUser();
+
+  if (user) {
+    const result: Array<{ year: number }> = await prisma.$queryRaw`
+      SELECT EXTRACT(YEAR FROM read_at) AS year
+      FROM user_books
+      WHERE read_at is not NULL
+      GROUP BY year
+      ORDER BY year DESC
+    `;
+
+    return JSON.stringify(result);
   }
 };
