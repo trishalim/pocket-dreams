@@ -30,11 +30,11 @@ export default async function Page({
 
   return (
     <Container>
-      <h1 className="font-serif text-2xl lg:text-4xl font-bold mb-3">
+      <h1 className="text-center font-serif text-2xl md:text-4xl font-semibold mb-5">
         What have you read lately?
       </h1>
 
-      <SearchForm q={q} />
+      <SearchForm q={q} className="max-w-2xl mx-auto" />
 
       {results?.docs?.length ? (
         <div className="grid border-y border-gray-100 mt-3 divide-y divide-gray-100">

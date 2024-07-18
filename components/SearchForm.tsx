@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Button from "@/components/Button";
 
 export default function SearchForm({
   q,
@@ -26,13 +27,14 @@ export default function SearchForm({
         className="w-full rounded-md border px-3 py-2"
         value={searchQuery}
         name="q"
+        required
         id="q"
         onChange={(e) => setSearchQuery(e.target.value)}
       />
 
-      <button className="rounded-md bg-black text-white px-4 py-2 font-medium">
+      <Button className="rounded-md bg-black text-white px-4 py-2 font-medium">
         Search
-      </button>
+      </Button>
     </form>
   );
 }

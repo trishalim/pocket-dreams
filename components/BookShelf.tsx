@@ -105,9 +105,8 @@ export default function BookShelf({ year }: { year: number }) {
         </div>
 
         <Link
-          href="/add"
-          type="button"
-          className="bg-black text-white px-4 py-2 font-medium rounded-md"
+          href="/search"
+          className="py-2 px-3 inline-flex rounded-lg no-underline bg-teal-500 text-white/95 border-b-4 border-teal-600 hover:text-white hover:bg-[#1dccb9] font-semibold"
         >
           Add book
         </Link>
