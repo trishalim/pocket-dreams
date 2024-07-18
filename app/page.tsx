@@ -1,12 +1,11 @@
-import SearchBooks from "@/components/SearchBooks";
 import BookShelf from "@/components/BookShelf";
 import Container from "@/components/Container";
 import { getUser } from "@/app/actions/user";
 import BookOpenIcon from "@/components/icons/BookOpenIcon";
-import StarIcon from "@/components/icons/StarIcon";
 import StarOutlineIcon from "@/components/icons/StarOutlineIcon";
 import ViewColumnsIcon from "@/components/icons/ViewColumnsIcon";
 import AuthButton from "@/components/AuthButton";
+import SearchForm from "@/components/SearchForm";
 
 export default async function Index() {
   const user = await getUser();
@@ -91,7 +90,7 @@ export default async function Index() {
           <h2 className="font-serif text-2xl md:text-4xl font-semibold mb-5">
             What have you read lately?
           </h2>
-          <SearchBooks></SearchBooks>
+          <SearchForm q="" />
         </Container>
       </div>
     </>

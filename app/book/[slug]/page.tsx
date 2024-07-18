@@ -14,11 +14,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return redirect("/login");
   }
 
-  const book = await prisma.books.findUnique({
-    where: {
-      open_library_key: `/works/${params.slug}`,
-    },
-  });
+  let book;
+
+  if (params.slug.includes("-")) {
+    book = await prisma.books.findUnique({
+      where: {
+        id: params.slug,
+      },
+    });
+  } else {
+    book = await prisma.books.findUnique({
+      where: {
+        open_library_key: `/works/${params.slug}`,
+      },
+    });
+  }
 
   if (!book) {
     return <div>Book not found</div>;

@@ -31,16 +31,20 @@ export default async function Page({
   return (
     <Container>
       <h1 className="font-serif text-2xl lg:text-4xl font-bold mb-3">
-        Search books
+        What have you read lately?
       </h1>
 
       <SearchForm q={q} />
 
-      <div className="grid border-y border-gray-100 mt-3 divide-y divide-gray-100">
-        {results?.docs?.map((r: BookDocument) => (
-          <BookSearchResult key={r.key} book={r} />
-        ))}
-      </div>
+      {results?.docs?.length ? (
+        <div className="grid border-y border-gray-100 mt-3 divide-y divide-gray-100">
+          {results?.docs?.map((r: BookDocument) => (
+            <BookSearchResult key={r.key} book={r} />
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
     </Container>
   );
 }
