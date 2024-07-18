@@ -11,11 +11,8 @@ interface RatingInputProps {
 
 export default function RatingInput({ value, onChange }: RatingInputProps) {
   const handleChange = (newRating: number) => {
-    console.log({ newRating });
     onChange(newRating);
   };
-
-  console.log({ value });
 
   return (
     <div className="flex gap-0.5 text-lg text-yellow-400">

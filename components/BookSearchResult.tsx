@@ -3,9 +3,7 @@
 import { BookDocument } from "@/app/interfaces/open-library";
 import { addBook } from "@/app/actions/books";
 import { getUser } from "@/app/actions/user";
-import { addBookToShelf } from "@/app/actions/userBooks";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function BookSearchResult({ book }: { book: BookDocument }) {
@@ -46,10 +44,9 @@ export default function BookSearchResult({ book }: { book: BookDocument }) {
       };
 
       if (user) {
-        addBook(book).then(() => {
+        addBook(book).then((response) => {
           router.push(`/add/${slug}`);
         });
-        // await addBookToShelf(book.key)
       }
     },
     mutationKey: ["user_with_books", user?.id],
