@@ -178,6 +178,6 @@ export const getYears = async () => {
       ORDER BY year DESC
     `;
 
-    return JSON.stringify(result);
+    return result;
   }
 };

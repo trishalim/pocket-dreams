@@ -4,14 +4,18 @@ import { getUser } from "@/app/actions/user";
 import SearchForm from "@/components/SearchForm";
 import LandingPage from "@/components/LandingPage";
 
-export default async function Index() {
+export default async function Index({
+  searchParams,
+}: {
+  searchParams: { year: number };
+}) {
   const user = await getUser();
 
   if (!user) {
     return <LandingPage />;
   }
 
-  const year = new Date().getFullYear();
+  const year = searchParams.year || new Date().getFullYear();
 
   return (
     <>
