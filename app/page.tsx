@@ -13,7 +13,7 @@ export default async function Index() {
 
   if (!user) {
     return (
-      <main className="min-h-screen flex flex-col">
+      <>
         <div className="bg-[#f9f6ed] py-12 lg:py-24">
           <div className="max-w-5xl mx-auto px-4">
             <div className="grid md:grid-cols-3 items-center gap-4">
@@ -30,7 +30,7 @@ export default async function Index() {
                 </div>
               </div>
               <div className="md:pr-8 order-first w-32 mb-5 md:mb-0 md:order-last md:w-auto">
-                <img className="h-full w-auto" src="/images/books.svg" />
+                <img src="/images/books.svg" />
               </div>
             </div>
             <div className="md:hidden">
@@ -77,7 +77,7 @@ export default async function Index() {
             </div>
           </div>
         </div>
-      </main>
+      </>
     );
   }
 
