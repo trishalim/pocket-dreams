@@ -45,7 +45,7 @@ export default function BookSearchResult({ book }: { book: BookDocument }) {
 
       if (user) {
         addBook(book).then((response) => {
-          router.push(`/add/${slug}`);
+          router.push(`/book/${slug}`);
         });
       }
     },
