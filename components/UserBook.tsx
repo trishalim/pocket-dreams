@@ -47,7 +47,6 @@ export default function UserBook({ book }: { book: Props }) {
           book={book.book}
           width={180}
           height={200}
-          objectFit="cover"
           className="shadow-lg h-[120px] w-auto sm:h-[240px] lg:h-[260px] "
         />
       </Link>
