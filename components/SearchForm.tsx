@@ -2,13 +2,19 @@
 
 import { useState } from "react";
 
-export default function SearchForm({ q }: { q: string }) {
+export default function SearchForm({
+  q,
+  className = "",
+}: {
+  q: string;
+  className?: string;
+}) {
   const [searchQuery, setSearchQuery] = useState(q);
   return (
     <form
       action={`/search?q=${searchQuery}`}
       method="get"
-      className="flex gap-3"
+      className={`${className} flex gap-3`}
     >
       <label htmlFor="q" className="sr-only">
         Search

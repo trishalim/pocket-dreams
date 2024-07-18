@@ -33,7 +33,7 @@ export default async function RootLayout({
       <body className="bg-white">
         {user && (
           <header>
-            <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
+            <nav className="w-full flex justify-center border-b border-b h-16">
               <div className="w-full max-w-4xl flex justify-between items-center p-4 text-sm">
                 <div className="flex gap-3">
                   <Link

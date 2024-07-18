@@ -19,17 +19,17 @@ export default async function Index({
 
   return (
     <>
-      <Container className="grid gap-8">
-        <BookShelf year={year} />
-      </Container>
-      <div className="bg-gray-100">
+      <div className="bg-[#f9f6ed] border-b">
         <Container>
-          <h2 className="font-serif text-2xl md:text-4xl font-semibold mb-5">
+          <h2 className="text-center font-serif text-2xl md:text-4xl font-semibold mb-5">
             What have you read lately?
           </h2>
-          <SearchForm q="" />
+          <SearchForm q="" className="max-w-2xl mx-auto" />
         </Container>
       </div>
+      <Container className="grid gap-12">
+        <BookShelf year={year} />
+      </Container>
     </>
   );
 }

@@ -63,27 +63,29 @@ export default function BookShelf({ year }: { year: number }) {
 
   return (
     <>
-      <div className="flex items-baseline justify-between gap-3 border-b pb-2">
-        <h1 className="font-serif text-3xl md:text-4xl font-semibold">
-          Books read in {selectedYear}
-        </h1>
-        {years ? (
-          <select
-            className="p-2 rounded-md border"
-            value={selectedYear}
-            onChange={handleYearChange}
-          >
-            {years.map((year) => (
-              <option key={year.year} value={year.year}>
-                {year.year}
-              </option>
-            ))}
-          </select>
-        ) : (
-          <></>
-        )}
+      <div className="space-y-4">
+        <div className="flex items-baseline justify-between gap-3 border-b pb-2">
+          <h1 className="font-serif text-2xl md:text-3xl font-semibold">
+            Books read in {selectedYear}
+          </h1>
+          {years ? (
+            <select
+              className="p-2 rounded-md border"
+              value={selectedYear}
+              onChange={handleYearChange}
+            >
+              {years.map((year) => (
+                <option key={year.year} value={year.year}>
+                  {year.year}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <></>
+          )}
+        </div>
+        {data && <Stats data={data} />}
       </div>
-      {data && <Stats data={data} />}
       <div className="flex items-baseline justify-between gap-3 border-b pb-2">
         <div className="flex gap-3">
           <button
