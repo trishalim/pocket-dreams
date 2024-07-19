@@ -30,28 +30,28 @@ export default async function RootLayout({
   const user = await getUser();
   return (
     <html lang="en" className={`${fraunces.variable} ${GeistSans.className}`}>
-      <body className="bg-white">
-        {user && (
-          <header>
-            <nav className="w-full flex justify-center border-b border-b h-16">
-              <div className="w-full max-w-4xl flex justify-between items-center p-4 text-sm">
-                <div className="flex gap-3">
-                  <Link
-                    className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3"
-                    href="/"
-                  >
-                    Home
-                  </Link>
+      <Providers>
+        <body className="bg-white">
+          {user && (
+            <header>
+              <nav className="w-full flex justify-center border-b border-b h-16">
+                <div className="w-full max-w-4xl flex justify-between items-center p-4 text-sm">
+                  <div className="flex gap-3">
+                    <Link
+                      className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3"
+                      href="/"
+                    >
+                      Home
+                    </Link>
+                  </div>
+                  <AuthButton />
                 </div>
-                <AuthButton />
-              </div>
-            </nav>
-          </header>
-        )}
-        <main className="w-full">
-          <Providers>{children}</Providers>
-        </main>
-      </body>
+              </nav>
+            </header>
+          )}
+          <main className="w-full">{children}</main>
+        </body>
+      </Providers>
     </html>
   );
 }

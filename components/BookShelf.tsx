@@ -9,17 +9,21 @@ import { useState } from "react";
 import Link from "next/link";
 import Stats from "@/components/Stats";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
 export default function BookShelf({ year }: { year: number }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
   const [selectedYear, setSelectedYear] = useState(year);
+  const [view, setView] = useState<"monthly" | "yearly">("monthly");
 
   const { data: user } = useQuery({
     queryKey: ["user"],
     queryFn: () => {
-      return getUser();
+      const supabase = createClient();
+
+      return supabase.auth.getUser().then((res) => res.data.user);
     },
   });
 
@@ -48,9 +52,7 @@ export default function BookShelf({ year }: { year: number }) {
     router.push(`/?year=${e.target.value}`);
   };
 
-  console.log({ years });
-
-  const [view, setView] = useState<"monthly" | "yearly">("monthly");
+  console.log({ years, user });
 
   if (!user) {
     return <></>;
