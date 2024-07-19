@@ -4,6 +4,7 @@ import { getUser } from "@/app/actions/user";
 import { prisma } from "@/utils/prisma";
 import { UserBookPayload } from "@/app/interfaces/user-book-payload";
 import { BookShelfMonth, BookShelfResponse } from "@/app/interfaces/book-shelf";
+import { createClient } from "@/utils/supabase/server";
 
 export const addBookToShelf = async (key: string) => {
   const user = await getUser();
@@ -168,16 +169,9 @@ export const getUserBook = async (bookId: string) => {
 
 export const getYears = async () => {
   const user = await getUser();
+  const supabase = createClient();
 
   if (user) {
-    const result: Array<{ year: number }> = await prisma.$queryRaw`
-      SELECT EXTRACT(YEAR FROM read_at) AS year
-      FROM user_books
-      WHERE read_at is not NULL
-      GROUP BY year
-      ORDER BY year DESC
-    `;
-
-    return result;
+    return supabase.from("years").select("*").eq("user_id", user.id);
   }
 };

@@ -28,14 +28,18 @@ export default function BookShelf({ year }: { year: number }) {
     queryFn: () => {
       return getUserBooks(selectedYear);
     },
+    enabled: !!user,
   });
 
   const { data: years } = useQuery({
-    queryKey: ["years"],
-    queryFn: () => {
-      return getYears();
+    queryKey: ["years", user?.id],
+    queryFn: async () => {
+      const res = await getYears();
+      return res?.data;
     },
+    enabled: !!user,
   });
+
   const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     queryClient.invalidateQueries({
       queryKey: ["user_with_books", user?.id, e.target.value],
@@ -68,7 +72,7 @@ export default function BookShelf({ year }: { year: number }) {
           <h1 className="font-serif text-2xl md:text-3xl font-semibold">
             Books read in {selectedYear}
           </h1>
-          {years ? (
+          {years && years.length > 1 ? (
             <select
               className="p-2 rounded-md border"
               value={selectedYear}
