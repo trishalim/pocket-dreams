@@ -17,13 +17,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
   let book;
 
   if (params.slug.includes("-")) {
-    book = await prisma.books.findUnique({
+    book = await prisma.books.findFirst({
       where: {
         id: params.slug,
       },
     });
   } else {
-    book = await prisma.books.findUnique({
+    book = await prisma.books.findFirst({
       where: {
         open_library_key: `/works/${params.slug}`,
       },
