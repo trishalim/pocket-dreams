@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { SubmitButton } from "./submit-button";
 import Button from "@/components/Button";
+import Link from "next/link";
+import BooksIcon from "@/components/icons/BooksIcon";
+import Heading from "@/app/(account)/Heading";
 
 export default function Login({
   searchParams,
@@ -31,9 +31,7 @@ export default function Login({
 
   return (
     <form className="flex flex-col justify-center gap-2">
-      <h1 className="font-serif text-4xl font-semibold mb-8">
-        Welcome back, bookworm.
-      </h1>
+      <Heading heading="Welcome back, bookworm." />
       <label htmlFor="email">Email address</label>
       <input
         className="rounded-md px-4 py-2 bg-inherit border mb-6"

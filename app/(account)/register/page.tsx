@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Button from "@/components/Button";
 import Link from "next/link";
+import Heading from "@/app/(account)/Heading";
 
 export default function Register({
   searchParams,
@@ -36,9 +37,8 @@ export default function Register({
 
   return (
     <form className="flex flex-col justify-center gap-2">
-      <h1 className="font-serif text-4xl font-semibold mb-8">
-        Let&apos;s get started, bookworm.
-      </h1>
+      <Heading heading="Let's get started, bookworm." />
+
       <label htmlFor="email">Email address</label>
       <input
         className="rounded-md px-4 py-2 bg-inherit border mb-6"
@@ -46,6 +46,7 @@ export default function Register({
         placeholder="you@example.com"
         required
       />
+
       <label htmlFor="password">Password</label>
       <input
         className="rounded-md px-4 py-2 bg-inherit border mb-6"
@@ -54,6 +55,7 @@ export default function Register({
         placeholder="••••••••"
         required
       />
+
       <Button
         type="submit"
         variant="primary"
@@ -63,6 +65,7 @@ export default function Register({
       >
         Sign up
       </Button>
+
       {searchParams?.message && <p className="mt-4">{searchParams.message}</p>}
 
       <div className="border-t mt-4 pt-4 text-gray-600 text-center">
