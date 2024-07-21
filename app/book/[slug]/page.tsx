@@ -37,7 +37,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const userBook = await getUserBook(book.id);
 
   if (userBook) {
-    console.log({ userBook });
     return (
       <Container className="grid gap-6">
         <UserBookHeader book={userBook} />

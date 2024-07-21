@@ -1,12 +1,10 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createClient } from "@/utils/supabase/client";
-import { redirect, useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 import { signOut } from "@/app/actions/auth";
 import Button from "@/components/Button";
 
-export default function LogoutButton({ userId }: { userId: string }) {
+export default function LogoutButton() {
   const queryClient = useQueryClient();
 
   const handleSignOut = () => {
@@ -15,7 +13,6 @@ export default function LogoutButton({ userId }: { userId: string }) {
 
   return (
     <form action={handleSignOut}>
-      {userId}
       <Button variant="secondary" type="submit">
         Logout
       </Button>

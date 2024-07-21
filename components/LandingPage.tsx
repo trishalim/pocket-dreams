@@ -15,7 +15,7 @@ export default function LandingPage() {
                 track the books you read
               </h1>
               <p className="text-gray-500 mb-5 md:hidden">
-                Track the books you read without all the fuss.
+                Create your virtual book shelf without all the fuss.
               </p>
               <div className="hidden md:block">
                 <AuthButton />
@@ -34,7 +34,7 @@ export default function LandingPage() {
 
       <div className="max-w-5xl mx-auto w-full px-4 py-8 lg:py-16">
         <h2 className="hidden lg:block font-serif text-3xl font-semibold mb-10">
-          Track the books you read without all the fuss.
+          Create your virtual book shelf without all the fuss.
         </h2>
         <div className="grid lg:grid-cols-3 gap-12">
           <div className="rounded-xl p-5 bg-white shadow-lg ring-1 ring-gray-300/10">

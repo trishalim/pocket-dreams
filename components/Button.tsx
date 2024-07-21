@@ -1,13 +1,16 @@
 import Link from "next/link";
+import type { ComponentProps } from "react";
 
 interface Props {
   variant?: "primary" | "secondary" | "tertiary";
   className?: string;
+  pending?: boolean;
+  pendingText?: string;
 }
 
-interface ButtonProps
-  extends Props,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {}
+// interface ButtonProps
+//   extends Props,
+//     React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 interface AnchorProps
   extends Props,
@@ -15,11 +18,15 @@ interface AnchorProps
   href: string;
 }
 
+type ButtonProps = ComponentProps<"button"> & Props;
+
 export default function Button(props: AnchorProps | ButtonProps) {
   const {
     className: customClassName = "",
     variant = "primary",
     children,
+    pending,
+    pendingText,
   } = props;
 
   const classNames = {
@@ -31,7 +38,7 @@ export default function Button(props: AnchorProps | ButtonProps) {
     tertiary: "text-gray-700 border border-transparent font-medium",
   };
 
-  const className = `${customClassName} ${classNames.base} ${classNames[variant]}`;
+  const className = `${customClassName} ${pending && pendingText ? " cursor-not-allowed opacity-50" : ""} ${classNames.base} ${classNames[variant]}`;
 
   if (!!(props as AnchorProps).href) {
     const anchorProps = props as AnchorProps;
@@ -44,5 +51,9 @@ export default function Button(props: AnchorProps | ButtonProps) {
 
   const buttonProps = props as ButtonProps;
 
-  return <button {...buttonProps} className={className} />;
+  return (
+    <button {...buttonProps} className={className}>
+      {pending && pendingText ? pendingText : children}
+    </button>
+  );
 }
