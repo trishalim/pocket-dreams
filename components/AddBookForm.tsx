@@ -8,6 +8,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Error from "./Error";
 import { getUser } from "@/app/actions/user";
 import RatingInput from "@/components/RatingInput";
+import Button from "@/components/Button";
 
 export default function AddBookForm({ book }: { book: books }) {
   const [rating, setRating] = useState(0);
@@ -90,13 +91,9 @@ export default function AddBookForm({ book }: { book: books }) {
         />
       </div>
 
-      <button
-        type="submit"
-        className="rounded-md bg-black text-white px-4 py-2 font-medium"
-        disabled={isPending}
-      >
+      <Button type="submit" disabled={isPending}>
         {isPending ? "Adding..." : "Add to shelf"}
-      </button>
+      </Button>
 
       {error && <Error error={error} />}
     </form>

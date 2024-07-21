@@ -10,6 +10,7 @@ import Link from "next/link";
 import Stats from "@/components/Stats";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
+import Button from "@/components/Button";
 
 export default function BookShelf({ year }: { year: number }) {
   const queryClient = useQueryClient();
@@ -94,28 +95,25 @@ export default function BookShelf({ year }: { year: number }) {
       </div>
       <div className="flex items-baseline justify-between gap-3 border-b pb-2">
         <div className="flex gap-3">
-          <button
+          <Button
+            variant="tertiary"
             type="button"
             className={`${classNames.base} ${view === "monthly" && classNames.active}`}
             onClick={() => setView("monthly")}
           >
             Monthly
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="tertiary"
             type="button"
             className={`${classNames.base} ${view === "yearly" && classNames.active}`}
             onClick={() => setView("yearly")}
           >
             Yearly
-          </button>
+          </Button>
         </div>
 
-        <Link
-          href="/search"
-          className="py-2 px-3 inline-flex rounded-lg no-underline bg-teal-500 text-white/95 border-b-4 border-teal-600 hover:text-white hover:bg-[#1dccb9] font-semibold"
-        >
-          Add book
-        </Link>
+        <Button href="/search">Add book</Button>
       </div>
 
       {data && view === "monthly" && <BooksByMonth data={data} />}

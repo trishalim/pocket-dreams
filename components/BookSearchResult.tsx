@@ -5,6 +5,7 @@ import { addBook } from "@/app/actions/books";
 import { getUser } from "@/app/actions/user";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import Button from "@/components/Button";
 
 export default function BookSearchResult({ book }: { book: BookDocument }) {
   const queryClient = useQueryClient();
@@ -65,13 +66,9 @@ export default function BookSearchResult({ book }: { book: BookDocument }) {
         </div>
       </div>
       <div>
-        <button
-          type="button"
-          onClick={() => add()}
-          className="rounded-md border px-3 py-2 font-medium whitespace-nowrap hover:bg-black hover:text-white hover:border-black transition-colors"
-        >
+        <Button variant="secondary" type="button" onClick={() => add()}>
           Select
-        </button>
+        </Button>
         {/*<button*/}
         {/*  onClick={() => add()}*/}
         {/*  type="button"*/}

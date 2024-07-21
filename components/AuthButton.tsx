@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import LogoutButton from "@/components/LogoutButton";
+import Button from "@/components/Button";
 
 export default async function AuthButton() {
   const supabase = createClient();
@@ -24,11 +25,6 @@ export default async function AuthButton() {
       <LogoutButton userId={user.id} />
     </div>
   ) : (
-    <Link
-      href="/login"
-      className="py-2 px-3 inline-flex rounded-lg no-underline bg-teal-500 text-white/95 border-b-4 border-teal-600 hover:text-white hover:bg-[#1dccb9] font-semibold"
-    >
-      Get started
-    </Link>
+    <Button href="/login">Get started</Button>
   );
 }
