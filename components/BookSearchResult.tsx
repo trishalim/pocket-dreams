@@ -6,6 +6,7 @@ import { getUser } from "@/app/actions/user";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
+import Error from "@/components/Error";
 
 export default function BookSearchResult({ book }: { book: BookDocument }) {
   const queryClient = useQueryClient();
@@ -13,8 +14,10 @@ export default function BookSearchResult({ book }: { book: BookDocument }) {
 
   const split = book.key.split("/");
   const slug = split[split.length - 1];
-
-  console.log("search result: ", book);
+  const author_name =
+    book.author_name && Array.isArray(book.author_name)
+      ? book.author_name[0]
+      : null;
 
   const { data: user } = useQuery({
     queryKey: ["user"],
@@ -23,27 +26,12 @@ export default function BookSearchResult({ book }: { book: BookDocument }) {
     },
   });
 
-  const { isPending, mutate: add } = useMutation({
+  const {
+    isPending,
+    mutate: add,
+    error,
+  } = useMutation({
     mutationFn: async () => {
-      const {
-        title,
-        title_sort,
-        first_publish_year,
-        number_of_pages_median,
-        key,
-        cover_edition_key,
-      } = book;
-
-      const payload = {
-        title,
-        title_sort,
-        first_publish_year,
-        author_name: book.author_name[0],
-        number_of_pages_median,
-        open_library_key: key,
-        open_library_cover_edition_key: cover_edition_key,
-      };
-
       if (user) {
         addBook(book).then((response) => {
           router.push(`/book/${slug}`);
@@ -57,25 +45,26 @@ export default function BookSearchResult({ book }: { book: BookDocument }) {
       }),
   });
 
+  if (!author_name) {
+    return <></>;
+  }
+
   return (
     <div className="py-5 flex justify-between gap-3" key={book.title}>
       <div>
         <div className="font-medium leading-none mb-2">{book.title}</div>
-        <div className="leading-none text-sm text-gray-600">
-          {book.author_name[0]}
-        </div>
+        {author_name && (
+          <div className="leading-none text-sm text-gray-600">
+            {author_name}
+          </div>
+        )}
+
+        {error && <Error error={error} />}
       </div>
       <div>
         <Button variant="secondary" type="button" onClick={() => add()}>
           Select
         </Button>
-        {/*<button*/}
-        {/*  onClick={() => add()}*/}
-        {/*  type="button"*/}
-        {/*  className="rounded-md border px-3 py-2 font-medium whitespace-nowrap hover:bg-black hover:text-white hover:border-black transition-colors"*/}
-        {/*>*/}
-        {/*  Add to shelf*/}
-        {/*</button>*/}
       </div>
     </div>
   );

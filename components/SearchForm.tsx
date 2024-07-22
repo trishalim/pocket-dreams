@@ -11,6 +11,7 @@ export default function SearchForm({
   className?: string;
 }) {
   const [searchQuery, setSearchQuery] = useState(q);
+
   return (
     <form
       action={`/search?q=${searchQuery}`}

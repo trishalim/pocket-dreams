@@ -21,7 +21,7 @@ export default async function Page({
   let results = [];
 
   const response = await fetch(
-    `https://openlibrary.org/search.json?q=${q}&limit=10`,
+    `https://openlibrary.org/search.json?q=${q}&limit=8`,
   );
 
   if (response) {

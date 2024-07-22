@@ -13,11 +13,16 @@ export const addBook = (book: BookDocument) => {
     cover_edition_key,
   } = book;
 
+  const author_name =
+    book.author_name && Array.isArray(book.author_name)
+      ? book.author_name[0]
+      : "";
+
   const payload = {
     title,
     title_sort,
     first_publish_year,
-    author_name: book.author_name[0],
+    author_name,
     number_of_pages_median,
     open_library_key: key,
     open_library_cover_edition_key: cover_edition_key,
