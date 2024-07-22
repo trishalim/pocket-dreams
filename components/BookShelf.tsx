@@ -53,8 +53,6 @@ export default function BookShelf({ year }: { year: number }) {
     router.push(`/?year=${e.target.value}`);
   };
 
-  console.log({ years, user });
-
   if (!user) {
     return <></>;
   }

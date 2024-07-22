@@ -28,7 +28,5 @@ export const addBook = (book: BookDocument) => {
     open_library_cover_edition_key: cover_edition_key,
   };
 
-  console.log({ payload });
-
   return supabase.from("books").upsert(payload);
 };

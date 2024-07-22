@@ -46,7 +46,6 @@ export default function EditBookForm({
       });
     },
     onSuccess: () => {
-      console.log("invalidate", ["user_book", user?.id, book.book.id]);
       queryClient.invalidateQueries({
         queryKey: ["user_book", user?.id, book.book.id],
       });
