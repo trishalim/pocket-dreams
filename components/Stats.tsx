@@ -25,18 +25,22 @@ export default function Stats({ data }: { data: BookShelfResponse }) {
         <p className="font-semibold text-4xl">{average}</p>
         <p className="text-gray-500">books per month</p>
       </div>
-      <div className="border p-3 rounded flex flex-col gap-1">
+      <div className="border p-3 rounded flex flex-col gap-2">
         <h2 className="font-semibold">Best reads</h2>
-        <ul className="leading-relaxed flex flex-col gap-1">
-          {data.favorites.map((book) => (
-            <li key={book.book_id}>
-              <Link href={`/book/${book.book_id}`} className="flex gap-1.5">
-                <StarIcon className="mt-0.5 text-xl text-yellow-400" />
-                {book.book.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {data.favorites?.length ? (
+          <ul className="leading-relaxed flex flex-col gap-1">
+            {data.favorites.map((book) => (
+              <li key={book.book_id}>
+                <Link href={`/book/${book.book_id}`} className="flex gap-1.5">
+                  <StarIcon className="mt-0.5 text-xl text-yellow-400 shrink-0" />
+                  {book.book.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-gray-500">No books rated yet.</p>
+        )}
       </div>
     </div>
   );
