@@ -9,6 +9,7 @@ import Error from "./Error";
 import { getUser } from "@/app/actions/user";
 import RatingInput from "@/components/RatingInput";
 import { user_books } from ".prisma/client";
+import Button from "@/components/Button";
 
 export default function EditBookForm({
   book,
@@ -61,7 +62,7 @@ export default function EditBookForm({
   };
 
   return (
-    <form className="grid gap-4" onSubmit={submit}>
+    <form className="grid gap-6" onSubmit={submit}>
       <div className="grid gap-2">
         <label htmlFor="review" className="font-medium">
           Review <span className="font-normal">(optional)</span>{" "}
@@ -71,18 +72,18 @@ export default function EditBookForm({
           onChange={(e) => setReview(e.target.value)}
           placeholder="Your thoughts on this book"
           name="review"
-          className="w-full rounded-md border px-3 py-2"
+          className="w-full max-w-lg rounded-md border px-3 py-2"
         ></textarea>
       </div>
 
-      <div className="flex gap-3 items-center">
+      <div className="grid gap-2">
         <label htmlFor="rating" className="font-medium">
           Rating <span className="font-normal">(optional)</span>{" "}
         </label>
         <RatingInput value={rating} onChange={(value) => setRating(value)} />
       </div>
 
-      <div className="flex gap-3 items-center">
+      <div className="grid gap-2 max-w-[12rem]">
         <label htmlFor="read_at" className="font-medium">
           Read on
         </label>
@@ -96,13 +97,11 @@ export default function EditBookForm({
         />
       </div>
 
-      <button
-        type="submit"
-        className="rounded-md bg-black text-white px-4 py-2 font-medium"
-        disabled={isPending}
-      >
-        {isPending ? "Saving..." : "Save"}
-      </button>
+      <div className="mt-6">
+        <Button type="submit" className="px-8" disabled={isPending}>
+          {isPending ? "Saving..." : "Save"}
+        </Button>
+      </div>
 
       {error && <Error error={error} />}
     </form>

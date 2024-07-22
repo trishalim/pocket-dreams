@@ -15,7 +15,7 @@ export default function RatingInput({ value, onChange }: RatingInputProps) {
   };
 
   return (
-    <div className="flex gap-0.5 text-lg text-yellow-400">
+    <div className="flex gap-0.5 text-2xl text-yellow-400">
       {[...Array(5)].map((_, i) => {
         return i < value ? (
           <button

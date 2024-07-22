@@ -38,7 +38,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   if (userBook) {
     return (
-      <Container className="grid gap-6">
+      <Container className="grid gap-12">
         <UserBookHeader book={userBook} />
 
         <EditBookForm book={userBook} />

@@ -51,7 +51,7 @@ export default function AddBookForm({ book }: { book: books }) {
   };
 
   return (
-    <form className="grid gap-4" onSubmit={submit}>
+    <form className="grid gap-6" onSubmit={submit}>
       <div>
         <h2 className="text-xl font-semibold">{book.title}</h2>
         <p>by {book.author_name}</p>
@@ -66,18 +66,18 @@ export default function AddBookForm({ book }: { book: books }) {
           onChange={(e) => setReview(e.target.value)}
           placeholder="Your thoughts on this book"
           name="review"
-          className="w-full rounded-md border px-3 py-2"
+          className="w-full max-w-lg rounded-md ring-1 ring-gray-500/20 px-3 py-2"
         ></textarea>
       </div>
 
-      <div className="flex gap-3 items-center">
+      <div className="grid gap-2">
         <label htmlFor="rating" className="font-medium">
           Rating <span className="font-normal">(optional)</span>{" "}
         </label>
         <RatingInput value={rating} onChange={(value) => setRating(value)} />
       </div>
 
-      <div className="flex gap-3 items-center">
+      <div className="grid gap-2 max-w-[12rem]">
         <label htmlFor="read_at" className="font-medium">
           Read on
         </label>
@@ -85,15 +85,17 @@ export default function AddBookForm({ book }: { book: books }) {
           type="date"
           name="read_at"
           id="read_at"
-          className="rounded-md border px-3 py-2"
+          className="rounded-md ring-1 ring-gray-500/20 px-3 py-2"
           value={read_at}
           onChange={(e) => setReadAt(e.target.value)}
         />
       </div>
 
-      <Button type="submit" disabled={isPending}>
-        {isPending ? "Adding..." : "Add to shelf"}
-      </Button>
+      <div className="mt-6">
+        <Button className="px-8" type="submit" disabled={isPending}>
+          {isPending ? "Adding..." : "Add to shelf"}
+        </Button>
+      </div>
 
       {error && <Error error={error} />}
     </form>
