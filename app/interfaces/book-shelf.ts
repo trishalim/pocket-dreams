@@ -5,8 +5,8 @@ export interface BookShelfResponse {
   totalCount: number;
   favorites: Array<user_books & { book: books }>;
   byMonth: BookShelfMonth[];
-  bestMonth: number;
-  bestMonthCount: number;
+  bestMonth?: number;
+  bestMonthCount?: number;
 }
 
 export interface BookShelfMonth {

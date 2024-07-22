@@ -67,26 +67,22 @@ export const getUserBooks = async (
         }
       : {};
 
-    const userWithBooks = await prisma.users.findUniqueOrThrow({
+    const userBooks = await prisma.user_books.findMany({
       where: {
-        id: user.id,
+        user_id: user.id,
+        ...where,
       },
       include: {
-        user_books: {
-          include: {
-            book: true,
-          },
-          orderBy: {
-            rating: "desc",
-          },
-          where,
-        },
+        book: true,
+      },
+      orderBy: {
+        rating: "desc",
       },
     });
 
     const booksByMonth: BookShelfMonth[] = [];
 
-    userWithBooks.user_books.forEach((book) => {
+    userBooks.forEach((book) => {
       const month = book.read_at.getMonth();
       const year = book.read_at.getFullYear();
 
@@ -106,13 +102,14 @@ export const getUserBooks = async (
     const bestMonth = booksByMonth.slice().sort((a, b) => b.count - a.count)[0];
 
     return {
-      totalCount: userWithBooks.user_books.length,
-      favorites: userWithBooks.user_books
-        .filter((book) => book.rating && book.rating > 3)
-        .slice(0, 3),
+      totalCount: userBooks?.length || 0,
+      favorites:
+        userBooks
+          .filter((book) => book.rating && book.rating > 3)
+          .slice(0, 3) || [],
       byMonth: booksByMonth.reverse(),
-      bestMonth: bestMonth.month,
-      bestMonthCount: bestMonth.count,
+      bestMonth: bestMonth?.month,
+      bestMonthCount: bestMonth?.count,
     };
   }
 };
