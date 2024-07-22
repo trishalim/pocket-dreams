@@ -5,6 +5,7 @@ import Providers from "@/components/Providers";
 import { Fraunces } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { getUser } from "@/app/actions/user";
+import LogoIcon from "@/components/icons/LogoIcon";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -18,8 +19,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "pocket dreams",
+  description: "your minimalist virtual book shelf",
 };
 
 export default async function RootLayout({
@@ -34,14 +35,11 @@ export default async function RootLayout({
         <body className="bg-white">
           {user && (
             <header>
-              <nav className="w-full flex justify-center border-b border-b h-16">
+              <nav className="w-full flex justify-center border-b border-b">
                 <div className="w-full max-w-4xl flex justify-between items-center p-4 text-sm">
                   <div className="flex gap-3">
-                    <Link
-                      className="font-medium px-3 hover:bg-gray-100 rounded py-2 px-3"
-                      href="/"
-                    >
-                      Home
+                    <Link className="font-serif text-xl font-medium" href="/">
+                      <LogoIcon className="h-10 sm:h-12 w-auto" />
                     </Link>
                   </div>
                   <AuthButton />
