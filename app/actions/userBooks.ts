@@ -51,26 +51,18 @@ export const removeBookFromShelf = async (id: string) => {
 };
 
 export const getUserBooks = async (
-  year?: number,
+  year: number,
 ): Promise<BookShelfResponse | undefined> => {
   const user = await getUser();
 
-  console.log({ year });
-
   if (user) {
-    const where = year
-      ? {
-          read_at: {
-            gte: new Date(`1-1-${year}`),
-            lte: new Date(`12-31-${year}`),
-          },
-        }
-      : {};
-
     const userBooks = await prisma.user_books.findMany({
       where: {
         user_id: user.id,
-        ...where,
+        read_at: {
+          gte: new Date(`1-1-${year}`),
+          lte: new Date(`12-31-${year}`),
+        },
       },
       include: {
         book: true,
@@ -92,7 +84,6 @@ export const getUserBooks = async (
       } else {
         booksByMonth[month] = {
           month,
-          year,
           user_books: [book],
           count: 1,
         };
@@ -110,6 +101,7 @@ export const getUserBooks = async (
       byMonth: booksByMonth.reverse(),
       bestMonth: bestMonth?.month,
       bestMonthCount: bestMonth?.count,
+      year,
     };
   }
 };

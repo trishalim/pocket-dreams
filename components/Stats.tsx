@@ -5,9 +5,15 @@ import BookOpenIcon from "@/components/icons/BookOpenIcon";
 import StarIcon from "@/components/icons/StarIcon";
 
 export default function Stats({ data }: { data: BookShelfResponse }) {
-  const { totalCount, byMonth } = data;
-  const currentMonth = new Date().getMonth();
-  const average = Math.round((totalCount / currentMonth) * 10) / 10;
+  const { totalCount, byMonth, year } = data;
+  const currentYear = new Date().getFullYear();
+
+  let latestMonth = new Date().getMonth() + 1;
+
+  if (year !== currentYear) {
+    latestMonth = 12;
+  }
+  const average = Math.round((totalCount / latestMonth) * 10) / 10;
 
   return (
     <div className="grid md:grid-cols-3 gap-3">

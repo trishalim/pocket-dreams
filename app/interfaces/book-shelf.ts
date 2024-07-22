@@ -7,11 +7,11 @@ export interface BookShelfResponse {
   byMonth: BookShelfMonth[];
   bestMonth?: number;
   bestMonthCount?: number;
+  year: number;
 }
 
 export interface BookShelfMonth {
   month: number;
-  year: number;
   count: number;
   user_books: Array<user_books & { book: books }>;
 }
