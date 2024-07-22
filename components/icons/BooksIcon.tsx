@@ -84,7 +84,7 @@ export default function BooksIcon({ className }: { className?: string }) {
       />
       <path
         d="M23.4333 6.70233L62.1896 11.482L39.7378 193.535C39.197 197.92 35.2039 201.036 30.8188 200.496L7.94228 197.674C3.55723 197.134 0.440825 193.14 0.981613 188.755L23.4333 6.70233Z"
-        fill="#1DA2B3"
+        fill="#14b8a6"
       />
       <ellipse
         cx="42.7909"
@@ -92,7 +92,7 @@ export default function BooksIcon({ className }: { className?: string }) {
         rx="19.5249"
         ry="6.89978"
         transform="rotate(7.03052 42.7909 9.23771)"
-        fill="#1DA2B3"
+        fill="#14b8a6"
       />
       <path
         d="M30.5975 22.9689C38.7613 22.7404 43.5046 23.4306 52.1611 25.6283"
@@ -134,7 +134,7 @@ export default function BooksIcon({ className }: { className?: string }) {
         y="182.624"
         width="39.0498"
         height="6.75297"
-        fill="#1DA2B3"
+        fill="#14b8a6"
       />
     </svg>
   );

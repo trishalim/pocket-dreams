@@ -14,7 +14,7 @@ export default function LogoutButton() {
   return (
     <form action={handleSignOut}>
       <Button variant="secondary" type="submit">
-        Logout
+        Log out
       </Button>
     </form>
   );
