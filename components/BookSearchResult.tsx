@@ -62,7 +62,12 @@ export default function BookSearchResult({ book }: { book: BookDocument }) {
         {error && <Error error={error} />}
       </div>
       <div>
-        <Button variant="secondary" type="button" onClick={() => add()}>
+        <Button
+          size="sm"
+          variant="secondary"
+          type="button"
+          onClick={() => add()}
+        >
           Select
         </Button>
       </div>

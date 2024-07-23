@@ -33,12 +33,7 @@ export default function SearchForm({
         onChange={(e) => setSearchQuery(e.target.value)}
       />
 
-      <Button
-        size="lg"
-        className="rounded-md bg-black text-white px-4 py-2 font-medium"
-      >
-        Search
-      </Button>
+      <Button>Search</Button>
     </form>
   );
 }
