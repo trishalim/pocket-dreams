@@ -11,6 +11,9 @@ import Stats from "@/components/Stats";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import Button from "@/components/Button";
+import Container from "@/components/Container";
+import BooksIcon from "@/components/icons/BooksIcon";
+import BookOpenIcon from "@/components/icons/BookOpenIcon";
 
 export default function BookShelf({ year }: { year: number }) {
   const queryClient = useQueryClient();
@@ -59,6 +62,17 @@ export default function BookShelf({ year }: { year: number }) {
 
   if (isLoading) {
     return <>Loading books...</>;
+  }
+
+  if (!data?.byMonth?.length) {
+    return (
+      <Container className="grid gap-3 justify-center">
+        <BookOpenIcon className="w-16 h-16 text-gray-300 mx-auto" />
+        <h2 className="text-center md:text-lg text-gray-500 mb-5">
+          You haven&apos;t added any books yet.
+        </h2>
+      </Container>
+    );
   }
 
   const classNames = {
