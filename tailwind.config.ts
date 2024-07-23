@@ -6,20 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontSize: {
-        "5xl": ["3rem", { lineHeight: "1.2em" }], // Set text-5xl to 3rem size with 1.2em line height
-      },
       fontFamily: {
         serif: ["var(--font-fraunces)"],
         sans: ["var(--font-roboto-mono)"],
-      },
-      colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        btn: {
-          background: "hsl(var(--btn-background))",
-          "background-hover": "hsl(var(--btn-background-hover))",
-        },
       },
     },
   },

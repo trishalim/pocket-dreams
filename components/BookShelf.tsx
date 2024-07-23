@@ -106,8 +106,6 @@ export default function BookShelf({ year }: { year: number }) {
             Yearly
           </Button>
         </div>
-
-        <Button href="/search">Add book</Button>
       </div>
 
       {data && view === "monthly" && <BooksByMonth data={data} />}
