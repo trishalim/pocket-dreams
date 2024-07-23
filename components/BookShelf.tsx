@@ -74,11 +74,7 @@ export default function BookShelf({ year }: { year: number }) {
             Books read in {selectedYear}
           </h1>
           {years && years.length > 1 ? (
-            <select
-              className="p-2 rounded-md border"
-              value={selectedYear}
-              onChange={handleYearChange}
-            >
+            <select value={selectedYear} onChange={handleYearChange}>
               {years.map((year) => (
                 <option key={year.year} value={year.year}>
                   {year.year}
