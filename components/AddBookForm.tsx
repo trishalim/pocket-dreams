@@ -92,8 +92,13 @@ export default function AddBookForm({ book }: { book: books }) {
       </div>
 
       <div className="mt-6">
-        <Button className="px-8" type="submit" disabled={isPending}>
-          {isPending ? "Adding..." : "Add to shelf"}
+        <Button
+          className="px-8"
+          type="submit"
+          pending={isPending}
+          pendingText="Adding..."
+        >
+          Add to shelf
         </Button>
       </div>
 

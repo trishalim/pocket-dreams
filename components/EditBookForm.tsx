@@ -97,8 +97,13 @@ export default function EditBookForm({
       </div>
 
       <div className="mt-6">
-        <Button type="submit" className="px-8" disabled={isPending}>
-          {isPending ? "Saving..." : "Save"}
+        <Button
+          type="submit"
+          className="px-8"
+          pending={isPending}
+          pendingText="Saving..."
+        >
+          Save
         </Button>
       </div>
 
