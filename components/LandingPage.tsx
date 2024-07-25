@@ -7,16 +7,13 @@ export default function LandingPage() {
   return (
     <>
       <div className="bg-[#f9f6ed] py-12 lg:py-24">
-        <div className="max-w-5xl mx-auto px-4">
+        <div className="max-w-5xl mx-auto px-4 grid">
           <div className="grid md:grid-cols-3 items-center gap-4">
-            <div className="md:col-span-2 md:py-5 lg:py-8 grid gap-8">
+            <div className="md:col-span-2 md:py-5 grid gap-8">
               <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold">
                 A minimalist way to <br />
                 track the books you read
               </h1>
-              <p className="text-gray-500 md:hidden">
-                Create your virtual book shelf without all the fuss.
-              </p>
               <div className="hidden md:block">
                 <AuthButton />
               </div>
@@ -25,7 +22,7 @@ export default function LandingPage() {
               <img src="/images/books.svg" />
             </div>
           </div>
-          <div className="md:hidden">
+          <div className="md:hidden mt-8">
             <AuthButton />
           </div>
           <img className="hidden md:block lg:-mx-4" src="/images/shelf.svg" />
