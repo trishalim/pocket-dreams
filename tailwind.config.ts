@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,6 +11,12 @@ module.exports = {
       fontFamily: {
         serif: ["var(--font-fraunces)"],
         sans: ["var(--font-roboto-mono)"],
+      },
+      colors: {
+        purple: {
+          ...colors.purple,
+          950: "#211f5a",
+        },
       },
     },
   },

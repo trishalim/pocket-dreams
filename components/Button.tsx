@@ -29,11 +29,11 @@ export default function Button(props: AnchorProps | ButtonProps) {
   } = props;
 
   const variantClassNames = {
-    base: "inline-flex gap-2 items-center justify-center rounded-lg overflow-hidden",
+    base: "inline-flex gap-2 items-center justify-center rounded-full overflow-hidden transition-colors",
     primary:
-      "group relative isolate font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] before:duration-300 before:ease-[cubic-bezier(0.4,0.36,0,1)] before:transtion-opacity shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_theme(colors.gray.900/0.2)] before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-md before:bg-gradient-to-b before:from-white/20 before:opacity-50 hover:before:opacity-100 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-md after:bg-gradient-to-b after:from-white/10 after:from-[46%] after:to-[54%] after:mix-blend-overlay ring-1 bg-teal-500 text-white ring-teal-500",
+      "bg-purple-300 font-medium text-purple-950 px-4 py-2 rounded-full hover:bg-purple-200",
     secondary:
-      "text-gray-700 border border-gray-100 hover:bg-gray-100 font-medium",
+      "rounded-full bg-slate-300/10 font-medium text-white hover:bg-slate-300/20",
     tertiary: "text-gray-700 border border-transparent font-medium",
   };
 
