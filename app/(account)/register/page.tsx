@@ -60,7 +60,6 @@ export default function Register({
         type="submit"
         variant="primary"
         formAction={signUp}
-        className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
         pendingText="Signing Up..."
       >
         Sign up

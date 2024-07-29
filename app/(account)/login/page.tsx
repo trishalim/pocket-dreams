@@ -51,8 +51,7 @@ export default function Login({
         type="submit"
         variant="primary"
         formAction={signIn}
-        className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
-        pendingText="Signing In..."
+        pendingText="Signing in..."
       >
         Sign in
       </Button>
