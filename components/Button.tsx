@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 import SpinnerIcon from "@/components/icons/SpinnerIcon";
 
 interface Props {
-  variant?: "primary" | "secondary" | "tertiary";
+  variant?: "primary" | "secondary";
   className?: string;
   pending?: boolean;
   pendingText?: string;
@@ -34,7 +34,6 @@ export default function Button(props: AnchorProps | ButtonProps) {
       "bg-purple-300 font-medium text-purple-950 px-4 py-2 rounded-full hover:bg-purple-200",
     secondary:
       "rounded-full bg-slate-100 font-medium text-slate-600 hover:bg-slate-200",
-    tertiary: "text-gray-700 border border-transparent font-medium",
   };
 
   const sizeClassNames = {

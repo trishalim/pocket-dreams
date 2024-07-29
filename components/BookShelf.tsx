@@ -76,8 +76,9 @@ export default function BookShelf({ year }: { year: number }) {
   }
 
   const classNames = {
-    base: "font-medium px-3 hover:bg-gray-100 rounded py-2 px-3",
-    active: "bg-gray-100",
+    base: "font-medium py-2 px-3 border-b-2",
+    active: "border-purple-400",
+    inactive: "border-transparent hover:border-slate-200",
   };
 
   return (
@@ -101,25 +102,21 @@ export default function BookShelf({ year }: { year: number }) {
         </div>
         {data && <Stats data={data} />}
       </div>
-      <div className="flex items-baseline justify-between gap-3 border-b pb-2">
-        <div className="flex gap-3">
-          <Button
-            variant="tertiary"
-            type="button"
-            className={`${classNames.base} ${view === "monthly" && classNames.active}`}
-            onClick={() => setView("monthly")}
-          >
-            Monthly
-          </Button>
-          <Button
-            variant="tertiary"
-            type="button"
-            className={`${classNames.base} ${view === "yearly" && classNames.active}`}
-            onClick={() => setView("yearly")}
-          >
-            Yearly
-          </Button>
-        </div>
+      <div className="flex gap-3 border-b">
+        <button
+          type="button"
+          className={`${classNames.base} ${view === "monthly" ? classNames.active : classNames.inactive}`}
+          onClick={() => setView("monthly")}
+        >
+          Monthly
+        </button>
+        <button
+          type="button"
+          className={`${classNames.base} ${view === "yearly" ? classNames.active : classNames.inactive}`}
+          onClick={() => setView("yearly")}
+        >
+          Yearly
+        </button>
       </div>
 
       {data && view === "monthly" && <BooksByMonth data={data} />}
