@@ -12,15 +12,16 @@ export default function LandingPage() {
       <div className="py-4 max-w-5xl mx-auto px-4 lg:flex gap-12 items-center lg:min-h-screen">
         <div>
           <LogoIcon className="text-purple-100 h-12 w-auto mb-12 lg:mb-5"></LogoIcon>
-          <h1 className="font-serif font-semibold inline bg-gradient-to-r from-indigo-100 via-purple-400 to-indigo-100 bg-clip-text font-display text-5xl lg:text-6xl text-transparent">
-            Your minimalist virtual book shelf
+          <h1 className="font-serif font-semibold inline text-5xl lg:text-6xl text-gradient">
+            Your minimalist{" "}
+            <span className="whitespace-nowrap">virtual book shelf</span>
           </h1>
           <p className="mt-5 text-xl tracking-tight font-light text-white/50 leading-relaxed">
             Track books you read without all the fuss from GoodReads.
           </p>
         </div>
 
-        <form className="mt-8 relative flex flex-col gap-5 max-w-sm w-full lg:p-8 lg:bg-slate-600/10 lg:ring-1 lg:ring-purple-200/10 lg:rounded-xl">
+        <form className="mt-8 relative flex flex-col gap-5 max-w-sm w-full lg:p-8 lg:bg-slate-900/10 lg:ring-1 lg:ring-purple-200/10 lg:rounded-xl">
           <div className="absolute -bottom-px left-11 right-20 h-px bg-gradient-to-r from-indigo-400/0 via-indigo-400/80 to-indigo-400/0 hidden lg:block"></div>
           <div className="grid gap-2">
             <label htmlFor="email" className="font-medium text-purple-100/80">

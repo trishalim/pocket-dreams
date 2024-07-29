@@ -14,4 +14,8 @@
 
     @apply appearance-none pl-3 py-2 pr-10 bg-no-repeat ring-1 ring-gray-500/20 rounded-md;
   }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-indigo-100 via-purple-400 to-indigo-100 bg-clip-text text-transparent;
+  }
 }
