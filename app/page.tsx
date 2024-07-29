@@ -19,12 +19,7 @@ export default async function Index({
 
   return (
     <>
-      <Container className="lg:pb-28">
-        <h2 className="text-center font-serif text-2xl md:text-4xl font-semibold text-gradient mb-5">
-          What have you read lately?
-        </h2>
-        <SearchForm q="" className="max-w-2xl mx-auto" />
-      </Container>
+      <SearchForm q="" className="max-w-2xl mx-auto" />
       <div className="flex-1 bg-white w-full">
         <Container className="grid gap-12">
           <BookShelf year={year} />

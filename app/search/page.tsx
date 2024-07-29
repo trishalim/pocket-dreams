@@ -29,22 +29,19 @@ export default async function Page({
   }
 
   return (
-    <Container>
-      <h1 className="text-center font-serif text-2xl md:text-4xl font-semibold mb-5">
-        What have you read lately?
-      </h1>
-
+    <>
       <SearchForm q={q} className="max-w-2xl mx-auto" />
-
-      {results?.docs?.length ? (
-        <div className="grid border-y border-gray-100 mt-3 divide-y divide-gray-100">
-          {results?.docs?.map((r: BookDocument) => (
-            <BookSearchResult key={r.key} book={r} />
-          ))}
-        </div>
-      ) : (
-        <></>
-      )}
-    </Container>
+      <Container>
+        {results?.docs?.length ? (
+          <div className="grid md:grid-cols-3 gap-3">
+            {results?.docs?.map((r: BookDocument) => (
+              <BookSearchResult key={r.key} book={r} />
+            ))}
+          </div>
+        ) : (
+          <></>
+        )}
+      </Container>
+    </>
   );
 }

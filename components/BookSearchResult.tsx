@@ -50,9 +50,9 @@ export default function BookSearchResult({ book }: { book: BookDocument }) {
   }
 
   return (
-    <div className="py-5 flex justify-between gap-3" key={book.title}>
+    <div className="rounded p-4 border flex gap-4 justify-between min-h-32">
       <div>
-        <div className="font-medium leading-none mb-2">{book.title}</div>
+        <div className="font-medium mb-2">{book.title}</div>
         {author_name && (
           <div className="leading-none text-sm text-gray-600">
             {author_name}

@@ -18,4 +18,8 @@
   .text-gradient {
     @apply bg-gradient-to-r from-indigo-100 via-purple-400 to-indigo-100 bg-clip-text text-transparent;
   }
+
+  .bg-purple-gradient {
+    @apply bg-gradient-to-t from-[#3a2d59] to-[#211f5a] bg-fixed;
+  }
 }

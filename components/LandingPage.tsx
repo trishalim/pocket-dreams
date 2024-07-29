@@ -102,7 +102,7 @@ export default function LandingPage() {
   return (
     <>
       <StarrySky className="absolute -top-64 left-0 -z-10" />
-      <div className="py-4 max-w-5xl mx-auto px-4 lg:flex gap-12 items-center lg:min-h-screen">
+      <div className="py-4 max-w-5xl mx-auto px-4 lg:flex gap-12 items-center bg-purple-gradient lg:min-h-screen">
         <div>
           <LogoIcon className="text-purple-100 h-12 w-auto mb-12 lg:mb-5"></LogoIcon>
           <h1 className="font-serif font-semibold inline text-5xl lg:text-6xl text-gradient">
