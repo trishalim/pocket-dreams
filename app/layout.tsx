@@ -32,7 +32,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${GeistSans.className}`}>
       <Providers>
-        <body className="bg-white">
+        <body className="bg-gradient-to-t from-[#3a2d59] to-[#211f5a] min-h-screen text-slate-400 flex flex-col">
           {user && (
             <header>
               <nav className="w-full flex justify-center border-b border-b">
@@ -47,7 +47,7 @@ export default async function RootLayout({
               </nav>
             </header>
           )}
-          <main className="w-full">{children}</main>
+          <main className="w-full flex-1">{children}</main>
         </body>
       </Providers>
     </html>
