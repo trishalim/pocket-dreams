@@ -6,7 +6,7 @@ export default function LandingPage() {
     <div className="bg-purple-950">
       <div className="bg-[url('/images/stars.svg')]">
         <div className="bg-gradient-to-t from-purple-900 to-transparent bg-fixed bg-cover bg-no-repeat bg-center bg-cover">
-          <div className="min-h-screen z-10 py-4 max-w-5xl mx-auto px-4 text-center flex flex-col items-center gap-6 justify-center max-w-4xl md:gap-12">
+          <div className="min-h-screen z-10 py-4 max-w-4xl mx-auto px-4 text-center flex flex-col items-center gap-6 justify-center max-w-4xl md:gap-12">
             <LogoIcon className="mx-auto text-purple-100 h-12 w-auto"></LogoIcon>
             <div>
               <h1 className="font-serif font-semibold inline text-4xl sm:text-5xl lg:text-6xl text-gradient">

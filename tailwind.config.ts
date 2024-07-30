@@ -16,6 +16,7 @@ module.exports = {
         purple: {
           ...colors.purple,
           950: "#211f5a",
+          1000: "#171730",
         },
       },
     },

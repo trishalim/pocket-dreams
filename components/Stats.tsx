@@ -16,23 +16,30 @@ export default function Stats({ data }: { data: BookShelfResponse }) {
   const average = Math.round((totalCount / latestMonth) * 10) / 10;
 
   return (
-    <div className="grid md:grid-cols-3 gap-3">
-      <div className="border p-3 rounded flex flex-col gap-1">
-        <p className="font-semibold text-4xl">{totalCount}</p>
+    <div className="grid md:grid-cols-3 gap-6">
+      <div className="border-2 border-white/10 rounded p-5 flex flex-col gap-1 ">
+        <p className="font-semibold font-serif text-white text-4xl">
+          {totalCount}
+        </p>
         <p className="text-gray-500">books read</p>
       </div>
-      <div className="border p-3 rounded flex flex-col gap-1">
-        <p className="font-semibold text-4xl">{average}</p>
+      <div className="border-2 border-white/10 rounded p-5 flex flex-col gap-1 ">
+        <p className="font-semibold font-serif text-white text-4xl">
+          {average}
+        </p>
         <p className="text-gray-500">books per month</p>
       </div>
-      <div className="border p-3 rounded flex flex-col gap-2">
-        <h2 className="font-semibold">Best reads</h2>
+      <div className="border-2 border-white/10 rounded p-5 flex flex-col gap-2 ">
+        <h2 className="font-semibold text-white">Best reads</h2>
         {data.favorites?.length ? (
-          <ul className="leading-relaxed flex flex-col gap-1">
+          <ul className="text-gray-400 leading-relaxed flex flex-col gap-1">
             {data.favorites.map((book) => (
               <li key={book.book_id}>
-                <Link href={`/book/${book.book_id}`} className="flex gap-1.5">
-                  <StarIcon className="mt-0.5 text-xl text-yellow-400 shrink-0" />
+                <Link
+                  href={`/book/${book.book_id}`}
+                  className="flex text-sm gap-1.5"
+                >
+                  <StarIcon className="text-lg text-yellow-400 shrink-0" />
                   {book.book.title}
                 </Link>
               </li>

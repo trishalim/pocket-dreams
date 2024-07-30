@@ -16,9 +16,8 @@ interface Props extends user_books {
 export default function UserBook({ book }: { book: Props }) {
   const queryClient = useQueryClient();
 
-  const { review, rating, read_at } = book;
+  const { rating, read_at } = book;
   const { title, author_name, id, open_library_cover_edition_key } = book.book;
-  const coverUrl = `https://covers.openlibrary.org/b/olid/${open_library_cover_edition_key}-L.jpg`;
 
   const { data: user } = useQuery({
     queryKey: ["user"],
@@ -41,22 +40,22 @@ export default function UserBook({ book }: { book: Props }) {
   });
 
   return (
-    <div className="rounded p-4 border sm:p-0 sm:border-0 sm:space-y-6 flex gap-4 sm:block">
-      <Link href={`/book/${book.book_id}`} className="sm:flex-1 sm:block">
+    <div className="flex gap-4">
+      <Link href={`/book/${book.book_id}`}>
         <BookCover
           book={book.book}
           width={180}
           height={200}
-          className="shadow-lg h-[120px] w-auto sm:h-[240px] lg:h-[260px] "
+          className="shadow-lg h-[110px] w-auto"
         />
       </Link>
 
       <div className="flex-1 p-3 sm:p-0">
         <div>
           <Link href={`/book/${book.book_id}`}>
-            <h2 className="font-semibold mb-1">{title}</h2>
+            <h2 className="text-white line-clamp-2 mb-1">{title}</h2>
             <div className="flex gap-2 items-center text-sm text-gray-500 mb-2">
-              <p>{author_name}</p>
+              <p className="line-clamp-1 text-sm">{author_name}</p>
               <div className="hidden sm:flex gap-0.5 text-xs items-center leading-none font-semibold">
                 <StarIcon className="text-yellow-400 text-base -mt-px" />
                 {rating}
@@ -67,12 +66,6 @@ export default function UserBook({ book }: { book: Props }) {
           <div className="sm:hidden">
             <Rating rating={rating} className="text-lg" />
           </div>
-
-          {review && (
-            <p className="mt-3 line-clamp-5 text-sm italic text-ellipsis text-gray-500">
-              {review}
-            </p>
-          )}
         </div>
         <button
           onClick={() => remove()}

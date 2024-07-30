@@ -31,16 +31,19 @@ export default async function RootLayout({
 }) {
   const user = await getUser();
   return (
-    <html lang="en" className={`${fraunces.variable} ${GeistSans.className}`}>
+    <html
+      lang="en"
+      className={`${fraunces.variable} ${GeistSans.className} bg-purple-1000`}
+    >
       <Providers>
         <body className="overflow-x-hidden min-h-screen flex flex-col">
           {user && (
-            <header>
+            <header className="absolute top-0 left-0 right-0 z-10">
               <nav className="w-full flex justify-center">
-                <div className="w-full max-w-5xl flex justify-between items-center px-4 py-6 text-sm">
+                <div className="w-full max-w-4xl flex justify-between items-center px-4 py-6 text-sm">
                   <div className="flex gap-3">
                     <Link className="font-serif text-xl font-medium" href="/">
-                      <LogoIcon className="text-purple-950 h-10 sm:h-12 w-auto" />
+                      <LogoIcon className="text-purple-100 h-10 sm:h-12 w-auto" />
                     </Link>
                   </div>
                   <AuthButton />
