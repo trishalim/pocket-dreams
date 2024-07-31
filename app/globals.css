@@ -9,10 +9,10 @@
 
   select {
     background-image: url("data:image/svg+xml;charset=UTF8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'><path stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/></svg>");
-    background-position: right 0.5rem center;
+    background-position: right 0.3rem center;
     background-size: 1.5em 1.5em;
 
-    @apply appearance-none pl-3 py-2 pr-10 bg-no-repeat ring-1 ring-gray-500/20 rounded-md;
+    @apply appearance-none pl-2 py-1.5 pr-9 bg-no-repeat ring-1 ring-gray-500/20 rounded-md text-sm;
   }
 
   .text-gradient {

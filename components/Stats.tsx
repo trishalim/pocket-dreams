@@ -3,6 +3,7 @@ import BookList from "@/components/BookList";
 import Link from "next/link";
 import BookOpenIcon from "@/components/icons/BookOpenIcon";
 import StarIcon from "@/components/icons/StarIcon";
+import BookCover from "@/components/BookCover";
 
 export default function Stats({ data }: { data: BookShelfResponse }) {
   const { totalCount, byMonth, year } = data;
@@ -16,7 +17,7 @@ export default function Stats({ data }: { data: BookShelfResponse }) {
   const average = Math.round((totalCount / latestMonth) * 10) / 10;
 
   return (
-    <div className="grid md:grid-cols-3 gap-3">
+    <div className="grid gap-3">
       <div className="border p-3 rounded flex flex-col gap-1">
         <p className="font-semibold text-4xl">{totalCount}</p>
         <p className="text-gray-500">books read</p>
@@ -28,13 +29,15 @@ export default function Stats({ data }: { data: BookShelfResponse }) {
       <div className="border p-3 rounded flex flex-col gap-2">
         <h2 className="font-semibold">Best reads</h2>
         {data.favorites?.length ? (
-          <ul className="leading-relaxed flex flex-col gap-1">
+          <ul className="leading-relaxed flex gap-2 overflow-x-auto">
             {data.favorites.map((book) => (
-              <li key={book.book_id}>
-                <Link href={`/book/${book.book_id}`} className="flex gap-1.5">
-                  <StarIcon className="mt-0.5 text-xl text-yellow-400 shrink-0" />
-                  {book.book.title}
-                </Link>
+              <li key={book.book_id} className="shrink-0">
+                <BookCover
+                  book={book.book}
+                  width={80}
+                  className="h-[120px] w-auto"
+                  height={120}
+                />
               </li>
             ))}
           </ul>

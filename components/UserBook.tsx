@@ -41,7 +41,7 @@ export default function UserBook({ book }: { book: Props }) {
   });
 
   return (
-    <div className="rounded p-4 border sm:p-0 sm:border-0 sm:space-y-6 flex gap-4 sm:block">
+    <div className="md:w-[200px] shrink-0 rounded p-4 border sm:p-0 sm:border-0 sm:space-y-6 inline-flex gap-4 sm:block">
       <Link href={`/book/${book.book_id}`} className="sm:flex-1 sm:block">
         <BookCover
           book={book.book}
@@ -51,10 +51,10 @@ export default function UserBook({ book }: { book: Props }) {
         />
       </Link>
 
-      <div className="flex-1 p-3 sm:p-0">
+      <div className="flex-1">
         <div>
           <Link href={`/book/${book.book_id}`}>
-            <h2 className="font-semibold mb-1">{title}</h2>
+            <h2 className="text-sm font-medium mb-1">{title}</h2>
             <div className="flex gap-2 items-center text-sm text-gray-500 mb-2">
               <p>{author_name}</p>
               <div className="hidden sm:flex gap-0.5 text-xs items-center leading-none font-semibold">

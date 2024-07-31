@@ -7,6 +7,8 @@ import { GeistSans } from "geist/font/sans";
 import { getUser } from "@/app/actions/user";
 import LogoIcon from "@/components/icons/LogoIcon";
 import Container from "@/components/Container";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -37,7 +39,7 @@ export default async function RootLayout({
           {user && (
             <header>
               <nav className="w-full flex justify-center">
-                <div className="w-full max-w-5xl flex justify-between items-center px-4 py-6 text-sm">
+                <div className="w-full max-w-5xl flex gap-12 justify-between items-center px-4 py-6 text-sm">
                   <div className="flex gap-3">
                     <Link className="font-serif text-xl font-medium" href="/">
                       <LogoIcon className="text-purple-950 h-10 sm:h-12 w-auto" />

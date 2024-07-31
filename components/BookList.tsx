@@ -12,8 +12,8 @@ export default function BookList({
       {user_books.map((book) => (
         <li key={book.book_id}>
           <Link href={`/book/${book.book_id}`} className="flex gap-1.5">
-            <BookOpenIcon className="mt-0.5 text-lg text-gray-300" />{" "}
-            {book.book.title}
+            <BookOpenIcon className="mt-0.5 text-lg shrink-0 text-gray-300" />{" "}
+            <span className="line-clamp-1">{book.book.title}</span>
           </Link>
         </li>
       ))}

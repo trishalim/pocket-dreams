@@ -29,20 +29,20 @@ export default function BooksByYear({ data }: { data: BookShelfResponse }) {
   });
 
   return (
-    <div className="grid gap-8">
-      <div className="grid md:grid-cols-3 gap-3">
+    <div className="grid gap-8 border-l">
+      <div className="grid md:grid-cols-3">
         {monthsWithBooks.map((month) => {
           return (
             <div
               key={month.monthName}
-              className="md:aspect-square border p-3 rounded"
+              className="md:aspect-square p-3 border-r border-b"
             >
               <div className="flex justify-between gap-3 mb-3">
-                <h2 className="font-serif text-lg font-medium">
+                <h2 className="text-xs uppercase text-slate-500 tracking-wide font-medium">
                   {month.monthName}
                 </h2>
                 {month.count && (
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-slate-500 text-xs">
                     {month.count} {month.count === 1 ? "book" : "books"}
                   </p>
                 )}

@@ -20,7 +20,7 @@ export default function BookCover({
       alt=""
       width={width}
       height={height}
-      className={`${className} rounded-l-sm rounded-r-xl`}
+      className={`${className} rounded-l-sm rounded-r-md`}
     />
   );
 }
