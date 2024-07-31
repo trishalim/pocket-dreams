@@ -1,7 +1,35 @@
 import Link from "next/link";
 import LogoIcon from "@/components/icons/LogoIcon";
+import { headers } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+import Button from "@/components/Button";
 
 export default function LandingPage() {
+  const signUp = async (formData: FormData) => {
+    "use server";
+
+    const origin = headers().get("origin");
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const supabase = createClient();
+
+    const { error, data } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${origin}/auth/callback`,
+      },
+    });
+
+    if (error) {
+      console.log(error);
+      return redirect("/?message=Could not authenticate user");
+    }
+
+    return redirect("/?message=Check email to continue sign in process");
+  };
+
   return (
     <div className="bg-purple-950">
       <div className="bg-[url('/images/stars.svg')]">
@@ -18,7 +46,10 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <form className="shadow relative flex flex-col gap-5 max-w-sm w-full p-5 sm:p-8 bg-purple-900/20 ring-1 ring-purple-200/10 rounded-xl">
+            <form
+              action={signUp}
+              className="shadow relative flex flex-col gap-5 max-w-sm w-full p-5 sm:p-8 bg-purple-900/20 ring-1 ring-purple-200/10 rounded-xl"
+            >
               <div className="absolute -top-px left-0 right-20 h-px bg-gradient-to-r from-purple-400/0 via-purple-400/80 to-purple-400/0"></div>
               <div className="absolute -bottom-px left-20 right-0 h-px bg-gradient-to-r from-purple-400/0 via-purple-400/80 to-purple-400/0"></div>
               <div className="grid gap-2">
@@ -48,12 +79,16 @@ export default function LandingPage() {
                   className="w-full rounded-md ring-1 ring-gray-400/30 px-3 py-2 bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-200 text-white"
                 />
               </div>
-              <button
+
+              <Button
                 type="submit"
-                className="bg-purple-300 font-medium text-lg text-slate-900 px-4 py-2 rounded-full"
+                variant="primary"
+                formAction={signUp}
+                pendingText="Signing Up..."
+                size="lg"
               >
-                Create account
-              </button>
+                Sign up
+              </Button>
 
               <p className="text-sm text-white/50">
                 Already have an account?{" "}

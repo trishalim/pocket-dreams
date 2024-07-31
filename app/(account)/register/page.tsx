@@ -70,7 +70,9 @@ export default function Register({
         Sign up
       </Button>
 
-      {searchParams?.message && <p className="mt-4">{searchParams.message}</p>}
+      {searchParams?.message && (
+        <p className="text-purple-100 mt-4">{searchParams.message}</p>
+      )}
 
       <div className="border-t border-white/10 mt-4 pt-4 text-purple-100/60 text-center">
         Already have an account?{" "}

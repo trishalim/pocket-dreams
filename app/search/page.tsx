@@ -31,7 +31,7 @@ export default async function Page({
   return (
     <>
       <SearchForm q={q} className="max-w-2xl mx-auto" />
-      <Container>
+      <Container className="mt-5">
         {results?.docs?.length ? (
           <div className="grid md:grid-cols-3 gap-3">
             {results?.docs?.map((r: BookDocument) => (

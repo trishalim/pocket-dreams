@@ -39,7 +39,7 @@ export default function Button(props: AnchorProps | ButtonProps) {
   const sizeClassNames = {
     sm: "py-1.5 px-3 text-sm",
     md: "py-2 px-5",
-    lg: "py-2.5 px-6 text-lg",
+    lg: "py-2 md:py-2.5 px-6 md:text-lg",
   };
 
   const className = `${customClassName} ${pending && pendingText ? " cursor-not-allowed opacity-50" : ""} ${variantClassNames.base} ${variantClassNames[variant]} ${sizeClassNames[size]}`;

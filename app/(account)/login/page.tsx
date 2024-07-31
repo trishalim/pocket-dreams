@@ -60,7 +60,9 @@ export default function Login({
       >
         Sign in
       </Button>
-      {searchParams?.message && <p className="mt-4">{searchParams.message}</p>}
+      {searchParams?.message && (
+        <p className="text-purple-100 mt-4">{searchParams.message}</p>
+      )}
 
       <div className="border-t border-white/10 mt-4 pt-4 text-purple-100/60 text-center">
         Don&apos;t have an account yet?{" "}
