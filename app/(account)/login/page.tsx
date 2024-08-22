@@ -1,33 +1,16 @@
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
+"use client";
+
 import Button from "@/components/Button";
 import Link from "next/link";
-import BooksIcon from "@/components/icons/BooksIcon";
 import Heading from "@/app/(account)/Heading";
+import { signIn } from "@/components/actions/signin";
+import { useFormState } from "react-dom";
 
-export default function Login({
-  searchParams,
-}: {
-  searchParams: { message: string };
-}) {
-  const signIn = async (formData: FormData) => {
-    "use server";
-
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const supabase = createClient();
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      return redirect("/login?message=Could not authenticate user");
-    }
-
-    return redirect("/");
-  };
+export default function Login() {
+  const [state, formAction] = useFormState(signIn as any, {
+    message: "",
+    ok: false,
+  });
 
   return (
     <form className="flex flex-col justify-center gap-2">
@@ -54,15 +37,14 @@ export default function Login({
       <Button
         type="submit"
         variant="primary"
-        formAction={signIn}
+        formAction={formAction}
         pendingText="Signing in..."
         size="lg"
       >
         Sign in
       </Button>
-      {searchParams?.message && (
-        <p className="text-purple-100 mt-4">{searchParams.message}</p>
-      )}
+
+      {state?.message && <p className="text-red-400 mt-4">{state.message}</p>}
 
       <div className="border-t border-white/10 mt-4 pt-4 text-purple-100/60 text-center">
         Don&apos;t have an account yet?{" "}
